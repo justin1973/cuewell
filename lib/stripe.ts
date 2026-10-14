@@ -1,8 +1,25 @@
 import Stripe from "stripe";
 
-// Client Stripe lato server. La chiave segreta sta solo nelle env del server.
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-  apiVersion: "2025-02-24.acacia",
+// Client Stripe lato server, creato "pigro": si accende solo quando serve davvero
+// (alla prima chiamata a runtime), non durante la compilazione. Cosi' il sito si
+// pubblica anche prima di aver configurato le chiavi Stripe.
+let _stripe: Stripe | null = null;
+
+function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
+      apiVersion: "2025-02-24.acacia",
+    });
+  }
+  return _stripe;
+}
+
+// Proxy: qualsiasi uso di `stripe.xxx` crea il client al primo accesso reale.
+export const stripe = new Proxy({} as Stripe, {
+  get(_target, prop) {
+    const client = getStripe() as unknown as Record<string | symbol, unknown>;
+    return client[prop];
+  },
 });
 
 // Mappa piano -> price id (creati nel tuo account Stripe).
