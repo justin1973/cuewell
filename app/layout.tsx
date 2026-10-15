@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cuewell — Trova chi sta già cercando quello che vendi",
+  title: "Cuewell — Find people already looking for what you sell",
   description:
-    "Cuewell usa un'AI avanzata per trovare, su Hacker News e nei forum, le persone che stanno cercando quello che vendi — e te le porta ogni mattina con un punteggio d'intento.",
+    "Cuewell uses advanced AI to find, on Hacker News and in forums, the people searching for what you sell — and brings them to your inbox each morning with an intent score.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -2,21 +2,22 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
-// Cambia lo stato di un lead (nuovo/contattato/salvato/archiviato).
+// Change a lead's status (new / contacted / saved / archived).
 export async function setLeadStatus(leadId: string, status: string) {
   const supabase = createClient();
   await supabase.from("leads").update({ status }).eq("id", leadId);
   revalidatePath("/dashboard");
 }
 
-// Crea o aggiorna la watch dell'utente (una sola, per semplicità in v1).
+// Create or update the user's watch (one per user in v1).
 export async function saveWatch(formData: FormData) {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
 
-  const name = (formData.get("name") as string) || "La mia nicchia";
+  const name = (formData.get("name") as string) || "My niche";
   const niche = (formData.get("niche") as string) || "";
   const include = (formData.get("include") as string || "")
     .split(",").map((s) => s.trim()).filter(Boolean);
@@ -37,4 +38,5 @@ export async function saveWatch(formData: FormData) {
     });
   }
   revalidatePath("/dashboard/setup");
+  redirect("/dashboard/setup?saved=1");
 }

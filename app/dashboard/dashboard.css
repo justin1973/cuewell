@@ -54,6 +54,8 @@
 .field{margin-bottom:14px}
 .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
 .empty{text-align:center;color:var(--muted);padding:48px 20px;border:1px dashed var(--border-2);border-radius:12px}
+.savebar{display:flex;align-items:center;gap:8px;background:var(--ok-bg);color:var(--ok);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:500;margin-bottom:16px;max-width:620px}
+.savebar .icn{width:17px;height:17px;flex:none}
 .danger{border:1px solid color-mix(in srgb,var(--hot) 35%,transparent);background:var(--hot-bg);border-radius:10px;padding:14px}
 .danger .dh{font-weight:600;font-size:14px;color:var(--hot);margin-bottom:4px}
 .danger p{font-size:13px;color:var(--muted);margin-bottom:12px}

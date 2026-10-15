@@ -3,10 +3,10 @@ import { createAdminClient } from "@/lib/supabase/admin";
 
 export const dynamic = "force-dynamic";
 
-const PLAN_LABEL: Record<string, string> = { solo: "Solo — €9/mese", pro: "Pro — €19/mese" };
+const PLAN_LABEL: Record<string, string> = { solo: "Solo — €9/mo", pro: "Pro — €19/mo" };
 const STATUS_LABEL: Record<string, string> = {
-  trialing: "In prova", active: "Attivo", past_due: "Pagamento in sospeso",
-  canceled: "Disdetto", unpaid: "Non pagato",
+  trialing: "Trial", active: "Active", past_due: "Payment due",
+  canceled: "Canceled", unpaid: "Unpaid",
 };
 
 export default async function AccountPage() {
@@ -22,17 +22,17 @@ export default async function AccountPage() {
 
   const hasSub = !!profile?.subscription_status && profile.subscription_status !== "canceled";
   const periodEnd = profile?.current_period_end
-    ? new Date(profile.current_period_end).toLocaleDateString("it-IT")
+    ? new Date(profile.current_period_end).toLocaleDateString("en-GB")
     : null;
 
   return (
     <>
-      <div className="phead"><h2>Account &amp; abbonamento</h2></div>
-      <p className="subt">Dati personali, pagamento e piano.</p>
+      <div className="phead"><h2>Account &amp; billing</h2></div>
+      <p className="subt">Your details, payment and plan.</p>
 
       <div className="panel">
-        <h3>Dati personali</h3>
-        <p className="ph">L&apos;email del tuo account.</p>
+        <h3>Your details</h3>
+        <p className="ph">The email on your account.</p>
         <div className="field">
           <label>Email</label>
           <input className="input" defaultValue={user?.email ?? ""} disabled />
@@ -40,41 +40,41 @@ export default async function AccountPage() {
       </div>
 
       <div className="panel">
-        <h3>Piano</h3>
+        <h3>Plan</h3>
         {hasSub ? (
           <>
-            <p className="ph">Il tuo abbonamento.</p>
+            <p className="ph">Your subscription.</p>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap", border: "1px solid var(--border)", borderRadius: 10, padding: 14, background: "var(--surface-2)" }}>
               <div>
-                <div style={{ fontWeight: 600 }}>{PLAN_LABEL[profile!.plan ?? ""] ?? "Abbonamento"}</div>
+                <div style={{ fontWeight: 600 }}>{PLAN_LABEL[profile!.plan ?? ""] ?? "Subscription"}</div>
                 <div style={{ fontSize: 13, color: "var(--faint)" }}>
-                  Stato: {STATUS_LABEL[profile!.subscription_status!] ?? profile!.subscription_status}
-                  {periodEnd ? ` · rinnovo il ${periodEnd}` : ""}
+                  Status: {STATUS_LABEL[profile!.subscription_status!] ?? profile!.subscription_status}
+                  {periodEnd ? ` · renews ${periodEnd}` : ""}
                 </div>
               </div>
               <form action="/api/stripe/portal" method="post">
-                <button className="btn btn-ghost sm" type="submit">Gestisci abbonamento</button>
+                <button className="btn btn-ghost sm" type="submit">Manage subscription</button>
               </form>
             </div>
             <p style={{ fontSize: 12.5, color: "var(--faint)", marginTop: 10 }}>
-              Dal portale puoi cambiare piano, aggiornare la carta o disdire.
+              From the portal you can change plan, update your card or cancel.
             </p>
           </>
         ) : (
           <>
-            <p className="ph">Scegli un piano per iniziare. I primi 7 giorni sono gratuiti.</p>
+            <p className="ph">Choose a plan to get started. Your first 7 days are free.</p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
               <form action="/api/stripe/checkout" method="post" style={{ border: "1px solid var(--border)", borderRadius: 10, padding: 16, background: "var(--surface-2)" }}>
                 <input type="hidden" name="plan" value="solo" />
                 <div style={{ fontWeight: 600 }}>Solo</div>
-                <div style={{ fontSize: 13, color: "var(--faint)", margin: "2px 0 12px" }}>€9/mese · 1 nicchia</div>
-                <button className="btn btn-ghost sm" type="submit" style={{ width: "100%" }}>Scegli Solo</button>
+                <div style={{ fontSize: 13, color: "var(--faint)", margin: "2px 0 12px" }}>€9/mo · 1 niche</div>
+                <button className="btn btn-ghost sm" type="submit" style={{ width: "100%" }}>Choose Solo</button>
               </form>
               <form action="/api/stripe/checkout" method="post" style={{ border: "2px solid var(--ink)", borderRadius: 10, padding: 16, background: "var(--surface-2)" }}>
                 <input type="hidden" name="plan" value="pro" />
                 <div style={{ fontWeight: 600 }}>Pro</div>
-                <div style={{ fontSize: 13, color: "var(--faint)", margin: "2px 0 12px" }}>€19/mese · illimitate</div>
-                <button className="btn btn-primary sm" type="submit" style={{ width: "100%" }}>Scegli Pro</button>
+                <div style={{ fontSize: 13, color: "var(--faint)", margin: "2px 0 12px" }}>€19/mo · unlimited</div>
+                <button className="btn btn-primary sm" type="submit" style={{ width: "100%" }}>Choose Pro</button>
               </form>
             </div>
           </>

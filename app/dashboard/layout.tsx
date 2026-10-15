@@ -9,9 +9,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const initials = email.slice(0, 2).toUpperCase() || "CW";
 
   const items = [
-    { href: "/dashboard", label: "Feed opportunità", icon: "zap" },
-    { href: "/dashboard/setup", label: "Setup & parole chiave", icon: "tune" },
-    { href: "/dashboard/account", label: "Account & abbonamento", icon: "user" },
+    { href: "/dashboard", label: "Opportunities", icon: "zap" },
+    { href: "/dashboard/setup", label: "Setup & keywords", icon: "tune" },
+    { href: "/dashboard/account", label: "Account & billing", icon: "user" },
   ];
 
   return (

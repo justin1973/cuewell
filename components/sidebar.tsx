@@ -13,7 +13,7 @@ export function Sidebar({ items, initials, subtitle }: { items: Item[]; initials
       <div className="me">
         <div className="ava">{initials}</div>
         <div>
-          <div style={{ fontSize: 14, fontWeight: 600 }}>Il tuo account</div>
+          <div style={{ fontSize: 14, fontWeight: 600 }}>Your account</div>
           <div style={{ fontSize: 12, color: "var(--faint)" }}>{subtitle}</div>
         </div>
       </div>
@@ -30,7 +30,7 @@ export function Sidebar({ items, initials, subtitle }: { items: Item[]; initials
       </nav>
       <div className="sidefoot">
         <form action="/auth/signout" method="post">
-          <button className="signout" type="submit"><Icon name="logout" />Esci</button>
+          <button className="signout" type="submit"><Icon name="logout" />Sign out</button>
         </form>
       </div>
     </aside>

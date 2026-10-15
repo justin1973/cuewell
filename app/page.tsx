@@ -8,30 +8,30 @@ export default function LandingPage() {
       <div className="topbar">
         <div className="brand"><span className="logo" />Cuewell</div>
         <div style={{ flex: 1 }} />
-        <Link className="btn btn-ghost sm" href="/login">Accedi</Link>
-        <Link className="btn btn-primary sm" href="/login?mode=signup">Inizia gratis</Link>
+        <Link className="btn btn-ghost sm" href="/login">Log in</Link>
+        <Link className="btn btn-primary sm" href="/login?mode=signup">Start free</Link>
       </div>
 
       {/* HERO */}
       <div className="wrap hero">
         <div className="herogrid">
           <div>
-            <div className="eyebrow">Per freelance, agenzie e founder</div>
-            <h1>Ogni giorno qualcuno chiede quello che vendi. Tu non lo sai.</h1>
+            <div className="eyebrow">For freelancers, agencies and founders</div>
+            <h1>Every day, someone asks for what you sell. You just don&apos;t see it.</h1>
             <p className="sub">
-              In questo momento, su Hacker News e nei forum, c&apos;è chi scrive &quot;cerco
-              un&apos;alternativa a [concorrente]&quot; o &quot;mi consigliate un tool per…&quot;. Sono
-              clienti pronti all&apos;acquisto. Un&apos;AI avanzata legge ogni conversazione, capisce chi
-              vuole davvero comprare e te lo porta ogni mattina — con un punteggio d&apos;intento. Tu
-              rispondi finché è caldo.
+              Right now, on Hacker News and in forums, people are writing &quot;looking for an
+              alternative to [competitor]&quot; or &quot;any tool recommendations for…&quot;. These are buyers
+              ready to act. An advanced AI reads every conversation, works out who actually wants to
+              buy, and brings them to your inbox each morning — with an intent score. You reply while
+              it&apos;s hot.
             </p>
             <div className="cta">
               <Link className="btn btn-primary" href="/login?mode=signup">
-                Provalo gratis per 7 giorni<Icon name="arrow-right" />
+                Start your 7-day trial<Icon name="arrow-right" />
               </Link>
-              <a className="btn btn-ghost" href="#come-funziona">Come funziona</a>
+              <a className="btn btn-ghost" href="#how-it-works">See how it works</a>
             </div>
-            <p className="note">Nessuna carta richiesta · disdici quando vuoi</p>
+            <p className="note">No credit card required · cancel anytime</p>
           </div>
           <div>
             <div className="card" style={{ padding: "16px 18px" }}>
@@ -39,7 +39,7 @@ export default function LandingPage() {
                 <span className="vsrc"><Icon name="msg" />Hacker News</span>
                 <div style={{ textAlign: "center", borderRadius: 9, padding: "5px 11px", minWidth: 52, background: "var(--hot-bg)" }}>
                   <div className="tab-nums" style={{ fontSize: 19, fontWeight: 700, color: "var(--hot)", lineHeight: 1.1 }}>9</div>
-                  <div style={{ fontSize: 10, color: "var(--hot)" }}>intento</div>
+                  <div style={{ fontSize: 10, color: "var(--hot)" }}>intent</div>
                 </div>
               </div>
               <div style={{ fontWeight: 600, fontSize: 15.5, margin: "10px 0 7px", lineHeight: 1.35 }}>
@@ -53,25 +53,25 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* PROBLEMA */}
+      {/* PROBLEM */}
       <div className="band"><div className="wrap pblock">
         <div className="sechead">
-          <div className="eyebrow">Il problema</div>
-          <h2>Inseguire clienti a freddo non funziona più.</h2>
-          <p>Messaggi ignorati, ore perse a scrollare forum a mano. Intanto le occasioni passano.</p>
+          <div className="eyebrow">The problem</div>
+          <h2>Cold outreach doesn&apos;t work anymore.</h2>
+          <p>Ignored messages, hours lost scrolling forums. Meanwhile the opportunities pass you by.</p>
         </div>
         <div className="contrast">
           <div className="cside">
-            <div className="ch">Outreach a freddo</div>
-            <div className="cpt"><Icon name="x" />Scrivi a gente che non ti ha chiesto niente</div>
-            <div className="cpt"><Icon name="x" />Il 98% dei messaggi finisce ignorato</div>
-            <div className="cpt"><Icon name="x" />Ore di ricerca manuale, ogni giorno</div>
+            <div className="ch">Cold outreach</div>
+            <div className="cpt"><Icon name="x" />You message people who never asked for anything</div>
+            <div className="cpt"><Icon name="x" />98% of messages get ignored</div>
+            <div className="cpt"><Icon name="x" />Hours of manual research, every day</div>
           </div>
           <div className="cside warmc">
-            <div className="ch">Con Cuewell</div>
-            <div className="cpt ok"><Icon name="check" />Arrivi quando è la persona a cercare</div>
-            <div className="cpt ok"><Icon name="check" />Rispondi a chi ha già il problema, ora</div>
-            <div className="cpt ok"><Icon name="check" />Il lavoro di ricerca lo fa l&apos;AI al posto tuo</div>
+            <div className="ch">With Cuewell</div>
+            <div className="cpt ok"><Icon name="check" />You arrive while the person is searching</div>
+            <div className="cpt ok"><Icon name="check" />You reply to someone who has the problem now</div>
+            <div className="cpt ok"><Icon name="check" />The AI does the research for you</div>
           </div>
         </div>
       </div></div>
@@ -79,67 +79,67 @@ export default function LandingPage() {
       {/* KILLER FEATURE */}
       <div className="wrap pblock">
         <div className="sechead">
-          <div className="eyebrow">La differenza</div>
-          <h2>Non cerca parole. Capisce le persone.</h2>
-          <p>Un modello AI avanzato legge ogni post e giudica l&apos;intento reale — come farebbe un commerciale esperto, ma su migliaia di conversazioni al giorno. Ecco cosa significa, in pratica:</p>
+          <div className="eyebrow">The difference</div>
+          <h2>It doesn&apos;t match keywords. It understands people.</h2>
+          <p>An advanced AI model reads every post and judges real intent — like an experienced sales rep would, but across thousands of conversations a day. Here&apos;s what that means in practice:</p>
         </div>
         <div className="vs">
           <div className="vscard pass">
-            <div className="vh"><Icon name="check" />CUEWELL LA PROMUOVE</div>
+            <div className="vh"><Icon name="check" />CUEWELL SURFACES IT</div>
             <span className="vsrc"><Icon name="msg" />Hacker News</span>
             <div className="vpost">&quot;Our <span className="hl">Mailchimp</span> bill jumped to <span className="hl">$350/mo</span>. <span className="hl">Ready to migrate this week</span> — any cheaper alternative with automations?&quot;</div>
-            <div className="vfoot"><div className="vscore"><b className="tab-nums">9</b><small>/10</small></div><div className="vreason">Cerca ora, con budget e urgenza</div></div>
+            <div className="vfoot"><div className="vscore"><b className="tab-nums">9</b><small>/10</small></div><div className="vreason">Searching now, with budget and urgency</div></div>
           </div>
           <div className="vscard rej">
-            <div className="vh"><Icon name="x" />CUEWELL LA SCARTA</div>
+            <div className="vh"><Icon name="x" />CUEWELL SKIPS IT</div>
             <span className="vsrc"><Icon name="msg" />Hacker News</span>
             <div className="vpost dim">&quot;Honestly I think <span style={{ textDecoration: "underline" }}>Mailchimp</span> is overpriced these days. Anyway, back to work.&quot;</div>
-            <div className="vfoot"><div className="vscore"><b className="tab-nums">2</b><small>/10</small></div><div className="vreason">Solo un&apos;opinione, non cerca nulla</div></div>
+            <div className="vfoot"><div className="vscore"><b className="tab-nums">2</b><small>/10</small></div><div className="vreason">Just an opinion, not looking for anything</div></div>
           </div>
         </div>
         <p style={{ textAlign: "center", color: "var(--faint)", fontSize: 13.5, maxWidth: "54ch", margin: "20px auto 0" }}>
-          Stessa parola — &quot;Mailchimp&quot; — ma intento opposto. Un alert a parole chiave te li manderebbe entrambi. Cuewell ti manda solo il primo.
+          Same word — &quot;Mailchimp&quot; — opposite intent. A keyword alert would send you both. Cuewell sends only the first.
         </p>
       </div>
 
-      {/* COME FUNZIONA */}
-      <div className="wrap" id="come-funziona">
+      {/* HOW IT WORKS */}
+      <div className="wrap" id="how-it-works">
         <div className="sechead" style={{ paddingTop: 56 }}>
-          <div className="eyebrow">Come funziona</div>
-          <h2>Pronto in tre passi.</h2>
-          <p>Lo imposti una volta. Poi arriva tutto nella tua email.</p>
+          <div className="eyebrow">How it works</div>
+          <h2>Up and running in three steps.</h2>
+          <p>Set it once. Then everything lands in your inbox.</p>
         </div>
         <div className="steps">
-          <div className="step"><div className="ic"><Icon name="tune" /></div><div className="n">Passo 01</div><h3>Dici cosa vendi</h3><p>La tua nicchia e qualche parola-spia: &quot;alternative to&quot;, &quot;looking for a tool&quot;, il nome di un concorrente. Un minuto di setup.</p></div>
-          <div className="step"><div className="ic"><Icon name="funnel" /></div><div className="n">Passo 02</div><h3>L&apos;AI fa il lavoro sporco</h3><p>Legge le conversazioni pubbliche, butta via il rumore e dà a ogni post un punteggio d&apos;intento da 1 a 10. Solo i veri potenziali clienti passano.</p></div>
-          <div className="step"><div className="ic"><Icon name="mail" /></div><div className="n">Passo 03</div><h3>Ricevi i lead caldi</h3><p>Ogni mattina un&apos;email con le persone più pronte a comprare e il link diretto al post. Apri, rispondi, chiudi.</p></div>
+          <div className="step"><div className="ic"><Icon name="tune" /></div><div className="n">Step 01</div><h3>Tell it what you sell</h3><p>Your niche and a few trigger phrases: &quot;alternative to&quot;, &quot;looking for a tool&quot;, a competitor&apos;s name. A minute of setup.</p></div>
+          <div className="step"><div className="ic"><Icon name="funnel" /></div><div className="n">Step 02</div><h3>The AI does the heavy lifting</h3><p>It reads public conversations, filters out the noise, and scores every post from 1 to 10. Only real prospects get through.</p></div>
+          <div className="step"><div className="ic"><Icon name="mail" /></div><div className="n">Step 03</div><h3>Receive warm leads</h3><p>Each morning, an email with the people most ready to buy and a direct link to the post. Open, reply, close.</p></div>
         </div>
       </div>
 
-      {/* PREZZO */}
+      {/* PRICING */}
       <div className="band"><div className="wrap pblock">
         <div className="sechead">
-          <div className="eyebrow">Prezzo</div>
-          <h2>Un cliente ripaga un anno di Cuewell.</h2>
-          <p>Meno di un caffè a settimana. Niente contratti, disdici quando vuoi.</p>
+          <div className="eyebrow">Pricing</div>
+          <h2>One customer pays for a year of Cuewell.</h2>
+          <p>Less than a coffee a week. No contracts, cancel anytime.</p>
         </div>
         <div className="plans">
           <div className="plan-card">
             <div className="pname">Solo</div>
-            <div className="price tab-nums">€9<span>/mese</span></div>
-            <div className="check"><Icon name="check" />1 nicchia monitorata</div>
-            <div className="check"><Icon name="check" />Email digest giornaliero</div>
-            <div className="check"><Icon name="check" />Scoring d&apos;intento con AI</div>
-            <Link className="btn btn-ghost sm" style={{ marginTop: 16, width: "100%" }} href="/login?mode=signup">Inizia</Link>
+            <div className="price tab-nums">€9<span>/mo</span></div>
+            <div className="check"><Icon name="check" />1 niche monitored</div>
+            <div className="check"><Icon name="check" />Daily email digest</div>
+            <div className="check"><Icon name="check" />AI intent scoring</div>
+            <Link className="btn btn-ghost sm" style={{ marginTop: 16, width: "100%" }} href="/login?mode=signup">Get started</Link>
           </div>
           <div className="plan-card reco">
-            <span className="ptag">Consigliato</span>
+            <span className="ptag">Recommended</span>
             <div className="pname">Pro</div>
-            <div className="price tab-nums">€19<span>/mese</span></div>
-            <div className="check"><Icon name="check" />Nicchie illimitate</div>
-            <div className="check"><Icon name="check" />Digest ogni 4 ore</div>
-            <div className="check"><Icon name="check" />Più lead al giorno</div>
-            <Link className="btn btn-primary sm" style={{ marginTop: 16, width: "100%" }} href="/login?mode=signup">Inizia gratis</Link>
+            <div className="price tab-nums">€19<span>/mo</span></div>
+            <div className="check"><Icon name="check" />Unlimited niches</div>
+            <div className="check"><Icon name="check" />Digest every 4 hours</div>
+            <div className="check"><Icon name="check" />More leads per day</div>
+            <Link className="btn btn-primary sm" style={{ marginTop: 16, width: "100%" }} href="/login?mode=signup">Start free</Link>
           </div>
         </div>
       </div></div>
@@ -148,15 +148,15 @@ export default function LandingPage() {
       <div className="wrap faq">
         <div className="sechead" style={{ marginBottom: 12 }}>
           <div className="eyebrow">FAQ</div>
-          <h2>Domande frequenti</h2>
+          <h2>Frequently asked questions</h2>
         </div>
         {[
-          ["Da dove arrivano i lead?", "Da conversazioni pubbliche su Hacker News e fonti simili, tramite le loro API ufficiali. Niente scraping grigio e nessun dato privato: solo ciò che le persone scrivono apertamente."],
-          ["Ogni quanto ricevo i lead?", "Un'email digest al giorno, oppure ogni 4 ore sul piano Pro. Solo quando ci sono lead nuovi: niente email vuote a riempirti la casella."],
-          ["Come fa l'AI a capire se è un lead vero?", "Legge ogni post e assegna un punteggio d'intento da 1 a 10, premiando chi cerca attivamente, con urgenza o budget, e scartando opinioni, curiosità e discussioni generiche."],
-          ["Rispondete voi ai lead al posto mio?", "No. Cuewell ti porta la segnalazione giusta al momento giusto, con il link al post. La conversazione e la vendita le fai tu — sei tu l'esperto, e un contatto personale converte molto meglio di un messaggio automatico."],
-          ["Funziona per la mia nicchia?", "Se i tuoi clienti sono persone che stanno online e discutono di software, prodotti o servizi digitali, sì. Per mercati puramente locali o offline è meno adatto, perché lì le conversazioni pubbliche scarseggiano."],
-          ["Posso disdire quando voglio?", "Sì, in qualsiasi momento dalle impostazioni dell'account. Nessun vincolo e nessuna penale. La prova di 7 giorni non richiede carta di credito."],
+          ["Where do the leads come from?", "From public conversations on Hacker News and similar sources, via their official APIs. No grey-area scraping and no private data — only what people write openly."],
+          ["How often do I get leads?", "A daily email digest, or every 4 hours on the Pro plan. Only when there are new leads — no empty emails cluttering your inbox."],
+          ["How does the AI know it's a real lead?", "It reads every post and assigns an intent score from 1 to 10, rewarding people who are actively searching, with urgency or budget, and discarding opinions, curiosity and generic discussion."],
+          ["Do you reply to leads for me?", "No. Cuewell brings you the right signal at the right time, with a link to the post. The conversation and the sale are yours — you're the expert, and a personal reply converts far better than an automated message."],
+          ["Will it work for my niche?", "If your customers are people who are online and discuss software, products or digital services, yes. For purely local or offline markets it's less suited, because public conversations are scarce there."],
+          ["Can I cancel anytime?", "Yes, anytime from your account settings. No lock-in, no penalty. The 7-day trial doesn't require a credit card."],
         ].map(([q, a]) => (
           <details className="qa" key={q}>
             <summary>{q}<Icon name="plus" className="icn pm" /></summary>
@@ -165,7 +165,7 @@ export default function LandingPage() {
         ))}
       </div>
 
-      <div className="wrap"><footer><span>© 2026 Cuewell</span><span>rateradar.pro</span></footer></div>
+      <div className="wrap"><footer><span>© 2026 Cuewell</span><span>cuewell.io</span></footer></div>
     </>
   );
 }

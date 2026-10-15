@@ -24,21 +24,21 @@ export default async function AdminPage() {
 
   return (
     <div style={{ maxWidth: 960, margin: "0 auto", padding: "22px 20px" }}>
-      <div className="phead"><h2>Panoramica admin</h2></div>
-      <p className="subt">Il polso di Cuewell in un colpo d&apos;occhio.</p>
+      <div className="phead"><h2>Admin overview</h2></div>
+      <p className="subt">The pulse of Cuewell at a glance.</p>
 
       <div className="tiles">
-        <div className="tile"><div className="k">Utenti registrati</div><div className="v tab-nums">{userCount ?? 0}</div></div>
-        <div className="tile"><div className="k">Watch attive</div><div className="v tab-nums">{watchCount ?? 0}</div></div>
-        <div className="tile"><div className="k">Lead (ultime 24h)</div><div className="v tab-nums">{leadsToday ?? 0}</div></div>
+        <div className="tile"><div className="k">Registered users</div><div className="v tab-nums">{userCount ?? 0}</div></div>
+        <div className="tile"><div className="k">Active watches</div><div className="v tab-nums">{watchCount ?? 0}</div></div>
+        <div className="tile"><div className="k">Leads (last 24h)</div><div className="v tab-nums">{leadsToday ?? 0}</div></div>
       </div>
 
       <div className="panel" style={{ maxWidth: "none" }}>
-        <h3>Stato motore</h3>
+        <h3>Engine status</h3>
         <p className="ph" style={{ margin: 0 }}>
           {lastLead
-            ? `Ultimo lead prodotto: ${new Date(lastLead).toLocaleString("it-IT")}.`
-            : "Nessun lead ancora prodotto. Verifica che il motore sia schedulato e che esista almeno una watch attiva."}
+            ? `Last lead produced: ${new Date(lastLead).toLocaleString("en-GB")}.`
+            : "No leads produced yet. Check the engine is scheduled and that at least one active watch exists."}
         </p>
       </div>
     </div>
