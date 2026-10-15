@@ -60,6 +60,7 @@ export default async function AccountPage({
     .maybeSingle();
 
   const hasSub = !!profile?.subscription_status && profile.subscription_status !== "canceled";
+  const currentPlan = profile?.plan ?? null;
   const periodEnd = profile?.current_period_end
     ? new Date(profile.current_period_end).toLocaleDateString("en-GB")
     : null;
@@ -121,21 +122,51 @@ export default async function AccountPage({
           </>
         ) : (
           <>
-            <p className="ph">Choose a plan to get started. Your first 7 days are free.</p>
+            <p className="ph">
+              {currentPlan
+                ? `You're on the ${PLAN_LABEL[currentPlan] ?? currentPlan} plan. Start a subscription below, or switch plan.`
+                : "Choose a plan to get started. Your first 7 days are free."}
+            </p>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-              <form action="/api/stripe/checkout" method="post" style={{ border: "1px solid var(--border)", borderRadius: 10, padding: 16, background: "var(--surface-2)" }}>
-                <input type="hidden" name="plan" value="solo" />
-                <div style={{ fontWeight: 600 }}>Solo</div>
-                <div style={{ fontSize: 13, color: "var(--faint)", margin: "2px 0 12px" }}>€9/mo · 1 niche</div>
-                <button className="btn btn-ghost sm" type="submit" style={{ width: "100%" }}>Choose Solo</button>
-              </form>
-              <form action="/api/stripe/checkout" method="post" style={{ border: "2px solid var(--ink)", borderRadius: 10, padding: 16, background: "var(--surface-2)" }}>
-                <input type="hidden" name="plan" value="pro" />
-                <div style={{ fontWeight: 600 }}>Pro</div>
-                <div style={{ fontSize: 13, color: "var(--faint)", margin: "2px 0 12px" }}>€19/mo · unlimited</div>
-                <button className="btn btn-primary sm" type="submit" style={{ width: "100%" }}>Choose Pro</button>
-              </form>
+              {([
+                { key: "solo", name: "Solo", price: "€9/mo · 1 niche", primary: false },
+                { key: "pro", name: "Pro", price: "€19/mo · unlimited", primary: true },
+              ] as const).map((p) => {
+                const isCurrent = currentPlan === p.key;
+                return (
+                  <div
+                    key={p.key}
+                    style={{
+                      border: isCurrent ? "2px solid var(--ok)" : p.primary ? "2px solid var(--ink)" : "1px solid var(--border)",
+                      borderRadius: 10, padding: 16, background: "var(--surface-2)",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                      <span style={{ fontWeight: 600 }}>{p.name}</span>
+                      {isCurrent && <span className="badge ok">Current</span>}
+                    </div>
+                    <div style={{ fontSize: 13, color: "var(--faint)", margin: "2px 0 12px" }}>{p.price}</div>
+                    {isCurrent ? (
+                      <button className="btn btn-ghost sm" type="button" disabled style={{ width: "100%", opacity: 0.6, cursor: "default" }}>
+                        Current plan
+                      </button>
+                    ) : (
+                      <form action="/api/stripe/checkout" method="post">
+                        <input type="hidden" name="plan" value={p.key} />
+                        <button className={`btn ${p.primary ? "btn-primary" : "btn-ghost"} sm`} type="submit" style={{ width: "100%" }}>
+                          {currentPlan ? `Switch to ${p.name}` : `Choose ${p.name}`}
+                        </button>
+                      </form>
+                    )}
+                  </div>
+                );
+              })}
             </div>
+            {currentPlan && (
+              <p className="hint" style={{ marginTop: 10 }}>
+                You already have {PLAN_LABEL[currentPlan] ?? currentPlan} access. Starting a subscription adds billing through Stripe.
+              </p>
+            )}
           </>
         )}
       </div>
