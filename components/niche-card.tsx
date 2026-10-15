@@ -13,9 +13,22 @@ export type Watch = {
   exclude_keywords: string[] | null;
   min_score: number | null;
   active: boolean;
+  last_run_at?: string | null;
 };
 
-export function NicheCard({ watch }: { watch: Watch }) {
+function timeAgo(iso: string | null | undefined): string {
+  if (!iso) return "not checked yet";
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return "just now";
+  if (m < 60) return `${m} min ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return h === 1 ? "1 hour ago" : `${h} hours ago`;
+  const d = Math.floor(h / 24);
+  return d === 1 ? "1 day ago" : `${d} days ago`;
+}
+
+export function NicheCard({ watch, leads = 0 }: { watch: Watch; leads?: number }) {
   const [pending, start] = useTransition();
   const include = watch.include_keywords ?? [];
   const exclude = watch.exclude_keywords ?? [];
@@ -48,6 +61,12 @@ export function NicheCard({ watch }: { watch: Watch }) {
           {exclude.map((k) => <span className="tag off" key={k}>{k}</span>)}
         </div>
       )}
+
+      <div className="niche-meta">
+        <span><Icon name="clock" />{watch.active ? `Last checked ${timeAgo(watch.last_run_at)}` : "Paused"}</span>
+        <span className="dotsep">·</span>
+        <span>{leads} {leads === 1 ? "lead" : "leads"} found</span>
+      </div>
 
       <div className="niche-actions">
         <Link className="btn btn-ghost sm" href={`/dashboard/setup?edit=${watch.id}`}>

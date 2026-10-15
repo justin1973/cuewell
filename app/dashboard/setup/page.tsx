@@ -21,16 +21,19 @@ export default async function SetupPage({
   const { data: { user } } = await supabase.auth.getUser();
 
   const admin = createAdminClient();
-  const [{ data: watches }, { data: profile }] = await Promise.all([
+  const [{ data: watches }, { data: profile }, { data: leadRows }] = await Promise.all([
     supabase
       .from("watches")
-      .select("id, name, niche_description, include_keywords, exclude_keywords, min_score, active")
+      .select("id, name, niche_description, include_keywords, exclude_keywords, min_score, active, last_run_at")
       .eq("user_id", user!.id)
       .order("created_at", { ascending: true }),
     admin.from("profiles").select("plan").eq("id", user!.id).maybeSingle(),
+    supabase.from("leads").select("watch_id").eq("user_id", user!.id),
   ]);
 
   const list = (watches ?? []) as Watch[];
+  const leadsByWatch = new Map<string, number>();
+  (leadRows ?? []).forEach((r) => leadsByWatch.set(r.watch_id, (leadsByWatch.get(r.watch_id) ?? 0) + 1));
   const isPro = profile?.plan === "pro";
   const limit = isPro ? Infinity : 1;
   const atLimit = list.length >= limit;
@@ -105,7 +108,7 @@ export default async function SetupPage({
       )}
 
       <div className="niche-grid">
-        {list.map((w) => <NicheCard key={w.id} watch={w} />)}
+        {list.map((w) => <NicheCard key={w.id} watch={w} leads={leadsByWatch.get(w.id) ?? 0} />)}
       </div>
 
       {atLimit && !isPro && (

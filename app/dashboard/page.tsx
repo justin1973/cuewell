@@ -67,7 +67,7 @@ export default async function FeedPage() {
       ) : list.length === 0 ? (
         <div className="empty">
           <p style={{ fontWeight: 600, color: "var(--ink)", marginBottom: 6 }}>No leads yet</p>
-          <p>The engine is watching your keywords. The first leads will appear here as soon as someone relevant posts.</p>
+          <p>Cuewell checks your sources every hour. The first leads usually appear within a day — you can see the last check time on each niche in Setup.</p>
         </div>
       ) : (
         <>
