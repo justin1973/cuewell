@@ -21,6 +21,10 @@ const STATUS_LABEL: Record<string, string> = {
   contacted: "Contacted", saved: "Saved", archived: "Archived",
 };
 
+const SOURCE_LABEL: Record<string, string> = {
+  hackernews: "Hacker News", lobsters: "Lobsters", stackexchange: "Stack Exchange",
+};
+
 function timeAgo(iso: string) {
   const diff = Date.now() - new Date(iso).getTime();
   const h = Math.floor(diff / 3_600_000);
@@ -43,7 +47,7 @@ export function LeadCard({ lead }: { lead: Lead }) {
     <div className="lead" style={pending ? { opacity: 0.5 } : undefined}>
       <div className="top">
         <div className="lmeta">
-          <span className="chip-src"><Icon name="msg" />{lead.source === "hackernews" ? "Hacker News" : lead.source}</span>
+          <span className="chip-src"><Icon name="msg" />{SOURCE_LABEL[lead.source] ?? lead.source}</span>
           <span>{timeAgo(lead.created_at)}</span>
           {lead.status !== "new" && STATUS_LABEL[lead.status] && <span className="tag">{STATUS_LABEL[lead.status]}</span>}
         </div>
