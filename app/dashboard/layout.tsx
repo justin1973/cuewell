@@ -1,5 +1,6 @@
 import { Sidebar } from "@/components/sidebar";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient, isAdmin } from "@/lib/supabase/admin";
 import "./dashboard.css";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -8,15 +9,26 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const email = user?.email ?? "";
   const initials = email.slice(0, 2).toUpperCase() || "CW";
 
+  const admin = createAdminClient();
+  const { data: profile } = await admin
+    .from("profiles").select("plan, subscription_status").eq("id", user!.id).maybeSingle();
+
   const items = [
     { href: "/dashboard", label: "Opportunities", icon: "zap" },
     { href: "/dashboard/setup", label: "Setup & keywords", icon: "tune" },
     { href: "/dashboard/account", label: "Account & billing", icon: "user" },
   ];
+  if (isAdmin(user?.email)) items.push({ href: "/admin", label: "Admin", icon: "settings" });
 
   return (
     <div className="app">
-      <Sidebar items={items} initials={initials} subtitle={email} />
+      <Sidebar
+        items={items}
+        initials={initials}
+        subtitle={email}
+        plan={profile?.plan ?? null}
+        status={profile?.subscription_status ?? null}
+      />
       <section className="main">{children}</section>
     </div>
   );

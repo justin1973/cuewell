@@ -6,15 +6,25 @@ import { Icon } from "@/components/icons";
 
 type Item = { href: string; label: string; icon: string };
 
-export function Sidebar({ items, initials, subtitle }: { items: Item[]; initials: string; subtitle: string }) {
+function planBadge(plan: string | null, status: string | null) {
+  if (status === "trialing") return { cls: "trial", label: "Trial" };
+  if (plan === "pro") return { cls: "pro", label: "Pro" };
+  if (plan === "solo") return { cls: "", label: "Solo" };
+  return { cls: "", label: "Free" };
+}
+
+export function Sidebar({
+  items, initials, subtitle, plan = null, status = null,
+}: { items: Item[]; initials: string; subtitle: string; plan?: string | null; status?: string | null }) {
   const path = usePathname();
+  const badge = planBadge(plan, status);
   return (
     <aside className="side">
       <div className="me">
         <div className="ava">{initials}</div>
-        <div>
-          <div style={{ fontSize: 14, fontWeight: 600 }}>Your account</div>
-          <div style={{ fontSize: 12, color: "var(--faint)" }}>{subtitle}</div>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontSize: 13, color: "var(--faint)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{subtitle}</div>
+          <span className={`plan-badge ${badge.cls}`}>{badge.label}</span>
         </div>
       </div>
       <nav className="nav">

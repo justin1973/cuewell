@@ -59,3 +59,87 @@
 .danger{border:1px solid color-mix(in srgb,var(--hot) 35%,transparent);background:var(--hot-bg);border-radius:10px;padding:14px}
 .danger .dh{font-weight:600;font-size:14px;color:var(--hot);margin-bottom:4px}
 .danger p{font-size:13px;color:var(--muted);margin-bottom:12px}
+
+.hint{color:var(--faint);font-weight:400;font-size:12.5px}
+.savebar.warn{background:var(--warm-bg);color:var(--warm);border-color:color-mix(in srgb,var(--warm) 30%,transparent)}
+
+/* Niches list */
+.niche-grid{display:flex;flex-direction:column;gap:12px}
+.niche{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.niche-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.niche-name{font-weight:600;font-size:15.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.dot.live{background:var(--ok)} .dot.paused{background:var(--faint)}
+.niche-state{font-size:12px;font-weight:500;color:var(--muted)}
+.niche-desc{color:var(--muted);font-size:13.5px;margin-top:4px}
+.niche-score{flex-shrink:0;text-align:center;background:var(--surface-3);border:1px solid var(--border);border-radius:9px;padding:5px 11px;min-width:56px}
+.niche-score .v{font-size:17px;font-weight:700;line-height:1.1}
+.niche-score .k{font-size:10px;color:var(--faint)}
+.niche-kw{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.muted-kw{margin-top:8px}
+.kw-label{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.06em;margin-right:2px}
+.tag.off{background:transparent;border-style:dashed;color:var(--faint)}
+.niche-actions{display:flex;gap:8px;border-top:1px solid var(--border);padding-top:12px;margin-top:14px;flex-wrap:wrap}
+
+/* Feed search */
+.feedbar{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.searchbox{position:relative;flex:1;min-width:180px}
+.searchbox .icn{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--faint)}
+.searchbox input{width:100%;border:1px solid var(--border-2);background:var(--surface-2);border-radius:9px;padding:9px 12px 9px 32px;font-size:13.5px;color:var(--ink);font-family:inherit}
+.searchbox input:focus{outline:none;border-color:var(--ink)}
+.filters{display:flex;gap:7px;flex-wrap:wrap}
+.pill{font-size:13px;font-weight:500;padding:7px 12px;border-radius:8px;border:1px solid var(--border-2);background:var(--surface);color:var(--muted);cursor:pointer;font-family:inherit}
+.pill:hover{background:var(--surface-3);color:var(--ink)}
+.pill.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* 14-day chart */
+.chart{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:22px}
+.chart h3{font-size:13px;font-weight:600;margin:0 0 2px}
+.chart .ph{font-size:12px;color:var(--faint);margin:0 0 14px}
+.bars{display:flex;align-items:flex-end;gap:4px;height:70px}
+.bar-col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px;height:100%}
+.bar{width:100%;max-width:26px;background:var(--surface-3);border-radius:4px 4px 2px 2px;min-height:2px}
+.bar.has{background:var(--ink)}
+.bar-x{font-size:9.5px;color:var(--faint)}
+
+/* Plan badge (sidebar) */
+.plan-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface-3);color:var(--muted);margin-top:4px}
+.plan-badge.pro{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.plan-badge.trial{background:var(--warm-bg);color:var(--warm);border-color:color-mix(in srgb,var(--warm) 30%,transparent)}
+
+/* Invoices */
+.inv{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.inv:last-child{border-bottom:0}
+.inv-l{display:flex;flex-direction:column}
+.inv-date{font-size:13.5px;font-weight:500}
+.inv-sub{font-size:12px;color:var(--faint)}
+.inv-r{display:flex;align-items:center;gap:10px}
+.inv-amt{font-size:13.5px;font-weight:600}
+.badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:7px}
+.badge.ok{background:var(--ok-bg);color:var(--ok)}
+.badge.fail{background:var(--hot-bg);color:var(--hot)}
+.badge.wait{background:var(--warm-bg);color:var(--warm)}
+.linkish{font-size:13px;color:var(--muted);text-decoration:underline;cursor:pointer;background:none;border:0;font-family:inherit;padding:0}
+.linkish:hover{color:var(--ink)}
+
+/* Admin table */
+.table-wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
+table.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);font-weight:600;padding:11px 14px;border-bottom:1px solid var(--border);background:var(--surface-2)}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tr.susp{opacity:.55}
+.u-email{font-weight:500}
+.rowact{display:flex;gap:6px;justify-content:flex-end}
+.iconbtn{width:30px;height:30px;border:1px solid var(--border-2);background:var(--surface);border-radius:7px;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.iconbtn:hover{background:var(--surface-3);color:var(--ink)}
+.iconbtn.danger-b:hover{background:var(--hot-bg);color:var(--hot);border-color:color-mix(in srgb,var(--hot) 40%,transparent)}
+.iconbtn .icn{width:15px;height:15px}
+.plan-pill{font-size:11px;font-weight:600;padding:2px 8px;border-radius:7px;background:var(--surface-3);color:var(--muted);border:1px solid var(--border)}
+.plan-pill.pro{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.admin-section{margin-bottom:26px}
+.admin-section h3{font-size:14px;font-weight:600;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.mini-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.mini-form input,.mini-form select{border:1px solid var(--border-2);background:var(--surface);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--ink);font-family:inherit}
+.health{display:flex;gap:7px;align-items:center;font-size:13px;color:var(--muted)}
+.health .dot{width:8px;height:8px}

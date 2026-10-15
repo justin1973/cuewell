@@ -34,6 +34,18 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // Block suspended users from the app (they keep their account but lose access).
+  if (isProtected && user) {
+    const { data: profile } = await supabase
+      .from("profiles").select("suspended").eq("id", user.id).maybeSingle();
+    if (profile?.suspended && path !== "/suspended") {
+      await supabase.auth.signOut();
+      const url = request.nextUrl.clone();
+      url.pathname = "/suspended";
+      return NextResponse.redirect(url);
+    }
+  }
+
   return response;
 }
 
