@@ -19,7 +19,7 @@ export default function LandingPage() {
             <div className="eyebrow">For freelancers, agencies and founders</div>
             <h1>Every day, someone asks for what you sell. You just don&apos;t see it.</h1>
             <p className="sub">
-              Right now, on Hacker News and in forums, people are writing &quot;looking for an
+              Right now — on Hacker News, Lobsters and Stack Exchange — people are writing &quot;looking for an
               alternative to [competitor]&quot; or &quot;any tool recommendations for…&quot;. These are buyers
               ready to act. An advanced AI reads every conversation, works out who actually wants to
               buy, and brings them to your inbox each morning — with an intent score. You reply while
@@ -138,7 +138,7 @@ export default function LandingPage() {
             <div className="price tab-nums">€19<span>/mo</span></div>
             <div className="check"><Icon name="check" />Unlimited niches</div>
             <div className="check"><Icon name="check" />Digest every 4 hours</div>
-            <div className="check"><Icon name="check" />More leads per day</div>
+            <div className="check"><Icon name="check" />More leads, across your niches</div>
             <Link className="btn btn-primary sm" style={{ marginTop: 16, width: "100%" }} href="/login?mode=signup">Start free</Link>
           </div>
         </div>
@@ -151,7 +151,8 @@ export default function LandingPage() {
           <h2>Frequently asked questions</h2>
         </div>
         {[
-          ["Where do the leads come from?", "From public conversations on Hacker News and similar sources, via their official APIs. No grey-area scraping and no private data — only what people write openly."],
+          ["Where do the leads come from?", "From public conversations on Hacker News, Lobsters and Stack Exchange, via their official APIs. No grey-area scraping and no private data — only what people write openly."],
+          ["How many leads should I expect?", "Quality over quantity. Depending on your niche you might see a few strong leads a week rather than hundreds a day — but each one is someone actively searching right now, which is exactly what makes them worth your time. Niches whose customers discuss tools and software online produce the most."],
           ["How often do I get leads?", "A daily email digest, or every 4 hours on the Pro plan. Only when there are new leads — no empty emails cluttering your inbox."],
           ["How does the AI know it's a real lead?", "It reads every post and assigns an intent score from 1 to 10, rewarding people who are actively searching, with urgency or budget, and discarding opinions, curiosity and generic discussion."],
           ["Do you reply to leads for me?", "No. Cuewell brings you the right signal at the right time, with a link to the post. The conversation and the sale are yours — you're the expert, and a personal reply converts far better than an automated message."],
