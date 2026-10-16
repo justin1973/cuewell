@@ -54,13 +54,15 @@ export function AdminUserRow({ u }: { u: AdminUser }) {
       <td className="tab-nums">{u.leads}</td>
       <td>
         <div className="rowact">
-          <button
-            className="iconbtn"
-            title={u.suspended ? "Reinstate" : "Suspend"}
-            onClick={() => start(() => setSuspended(u.id, !u.suspended))}
-          >
-            <Icon name={u.suspended ? "play" : "ban"} />
-          </button>
+          {!u.isSelf && (
+            <button
+              className="iconbtn"
+              title={u.suspended ? "Reinstate" : "Suspend"}
+              onClick={() => start(() => setSuspended(u.id, !u.suspended))}
+            >
+              <Icon name={u.suspended ? "play" : "ban"} />
+            </button>
+          )}
           {!u.isSelf && (
             <button
               className="iconbtn danger-b"

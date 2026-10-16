@@ -35,14 +35,21 @@ export async function middleware(request: NextRequest) {
   }
 
   // Block suspended users from the app (they keep their account but lose access).
+  // Admins are never locked out — this is the safety net against suspending yourself.
   if (isProtected && user) {
-    const { data: profile } = await supabase
-      .from("profiles").select("suspended").eq("id", user.id).maybeSingle();
-    if (profile?.suspended && path !== "/suspended") {
-      await supabase.auth.signOut();
-      const url = request.nextUrl.clone();
-      url.pathname = "/suspended";
-      return NextResponse.redirect(url);
+    const adminEmails = (process.env.ADMIN_EMAILS ?? "")
+      .split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+    const userIsAdmin = !!user.email && adminEmails.includes(user.email.toLowerCase());
+
+    if (!userIsAdmin) {
+      const { data: profile } = await supabase
+        .from("profiles").select("suspended").eq("id", user.id).maybeSingle();
+      if (profile?.suspended && path !== "/suspended") {
+        await supabase.auth.signOut();
+        const url = request.nextUrl.clone();
+        url.pathname = "/suspended";
+        return NextResponse.redirect(url);
+      }
     }
   }
 

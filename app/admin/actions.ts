@@ -15,7 +15,8 @@ async function requireAdmin() {
 
 // Suspend or reinstate a user.
 export async function setSuspended(userId: string, suspended: boolean) {
-  await requireAdmin();
+  const me = await requireAdmin();
+  if (suspended && me.id === userId) return; // never let an admin suspend (lock out) themselves
   const admin = createAdminClient();
   await admin.from("profiles").update({ suspended }).eq("id", userId);
   revalidatePath("/admin");
