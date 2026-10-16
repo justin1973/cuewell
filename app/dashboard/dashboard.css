@@ -5,7 +5,8 @@
 .ava{width:34px;height:34px;border-radius:50%;background:var(--surface-3);color:var(--ink);font-weight:600;display:flex;align-items:center;justify-content:center;font-size:13px;border:1px solid var(--border)}
 .nav a{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:9px;color:var(--muted);font-size:14px;font-weight:500;margin-bottom:2px;transition:background .12s,color .12s}
 .nav a:hover{background:var(--surface-3);color:var(--ink)}
-.nav a.on{background:var(--surface-3);color:var(--ink)}
+.nav a.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.nav a.on .icn{color:var(--accent)}
 .nav .icn{width:19px;height:19px}
 .sidefoot{margin-top:auto;padding-top:12px}
 .signout{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:9px;color:var(--muted);font-size:14px;font-weight:500;background:none;border:0;cursor:pointer;width:100%;text-align:left;font-family:inherit}
@@ -38,6 +39,7 @@
 .score .k{font-size:10px}
 .score.hot{background:var(--hot-bg)} .score.hot .v,.score.hot .k{color:var(--hot)}
 .score.warm{background:var(--warm-bg)} .score.warm .v,.score.warm .k{color:var(--warm)}
+.score.cool{background:var(--surface-3)} .score.cool .v,.score.cool .k{color:var(--muted)}
 .ltitle{font-weight:600;font-size:15.5px;margin:10px 0 7px;line-height:1.35}
 .quote{color:var(--muted);font-size:14px;border-left:2px solid var(--border-2);padding-left:12px;margin:0 0 12px}
 .labels{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
@@ -124,12 +126,12 @@
 .bars{display:flex;align-items:flex-end;gap:4px;height:70px}
 .bar-col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px;height:100%}
 .bar{width:100%;max-width:26px;background:var(--surface-3);border-radius:4px 4px 2px 2px;min-height:2px}
-.bar.has{background:var(--ink)}
+.bar.has{background:var(--accent)}
 .bar-x{font-size:9.5px;color:var(--faint)}
 
 /* Plan badge (sidebar) */
 .plan-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface-3);color:var(--muted);margin-top:4px}
-.plan-badge.pro{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.plan-badge.pro{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .plan-badge.trial{background:var(--warm-bg);color:var(--warm);border-color:color-mix(in srgb,var(--warm) 30%,transparent)}
 
 /* Invoices */
@@ -161,7 +163,7 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
 .iconbtn.danger-b:hover{background:var(--hot-bg);color:var(--hot);border-color:color-mix(in srgb,var(--hot) 40%,transparent)}
 .iconbtn .icn{width:15px;height:15px}
 .plan-pill{font-size:11px;font-weight:600;padding:2px 8px;border-radius:7px;background:var(--surface-3);color:var(--muted);border:1px solid var(--border)}
-.plan-pill.pro{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.plan-pill.pro{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .admin-section{margin-bottom:26px}
 .admin-section h3{font-size:14px;font-weight:600;margin:0 0 12px;display:flex;align-items:center;gap:8px}
 .mini-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px}

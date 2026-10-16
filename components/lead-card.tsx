@@ -41,7 +41,7 @@ export function LeadCard({ lead }: { lead: Lead }) {
   const [pending, start] = useTransition();
   const [editingNote, setEditingNote] = useState(false);
   const [noteDraft, setNoteDraft] = useState(lead.note ?? "");
-  const band = lead.score >= 8 ? "hot" : "warm";
+  const band = lead.score >= 8 ? "hot" : lead.score >= 6 ? "warm" : "cool";
 
   function mark(status: string) {
     start(() => setLeadStatus(lead.id, status));

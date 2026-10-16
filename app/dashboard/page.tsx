@@ -80,7 +80,7 @@ export default async function FeedPage() {
 
       <div className="tiles" style={{ gridTemplateColumns: "repeat(4,1fr)" }}>
         <div className="tile"><div className="k">New today</div><div className="v tab-nums">{today}</div></div>
-        <div className="tile"><div className="k">Hot waiting</div><div className="v tab-nums">{hotWaiting}</div></div>
+        <div className="tile"><div className="k">Hot waiting</div><div className="v tab-nums" style={{ color: hotWaiting > 0 ? "var(--hot)" : undefined }}>{hotWaiting}</div></div>
         <div className="tile"><div className="k">Contacted</div><div className="v tab-nums">{contacted}</div></div>
         <div className="tile"><div className="k">Saved</div><div className="v tab-nums">{saved}</div></div>
       </div>
