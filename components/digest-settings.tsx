@@ -43,7 +43,7 @@ export function DigestSettings({
       ) : mode === "daily" ? (
         <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", fontSize: 13.5, color: "var(--muted)" }}>
           <span>Delivered around</span>
-          <select className="minisel" value={h} onChange={(e) => setH(parseInt(e.target.value, 10))} aria-label="Delivery hour">
+          <select name="hour" className="minisel" value={h} onChange={(e) => setH(parseInt(e.target.value, 10))} aria-label="Delivery hour">
             {Array.from({ length: 24 }, (_, i) => (
               <option key={i} value={i}>{String(i).padStart(2, "0")}:00</option>
             ))}
