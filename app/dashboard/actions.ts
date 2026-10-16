@@ -111,11 +111,17 @@ export async function saveDigestPrefs(formData: FormData) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return;
 
-  const mode = String(formData.get("mode") ?? "daily");       // off | daily | every_4h
-  const hour = Math.min(23, Math.max(0, parseInt(String(formData.get("hour") ?? "8"), 10) || 8));
+  let mode = String(formData.get("mode") ?? "daily");         // off | daily | every_4h
+  const parsedHour = parseInt(String(formData.get("hour") ?? "8"), 10);
+  const hour = Number.isNaN(parsedHour) ? 8 : Math.min(23, Math.max(0, parsedHour));
   const tz = String(formData.get("timezone") ?? "UTC").trim() || "UTC";
 
   const admin = createAdminClient();
+
+  // "Every 4 hours" is a Pro feature — block it server-side for non-Pro plans.
+  const { data: prof } = await admin.from("profiles").select("plan").eq("id", user.id).maybeSingle();
+  if (mode === "every_4h" && prof?.plan !== "pro") mode = "daily";
+
   await admin.from("profiles").update({
     digest_enabled: mode !== "off",
     digest_frequency: mode === "every_4h" ? "every_4h" : "daily",

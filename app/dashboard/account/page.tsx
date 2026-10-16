@@ -104,6 +104,7 @@ export default async function AccountPage({
         frequency={profile?.digest_frequency ?? "daily"}
         hour={profile?.digest_hour ?? 8}
         timezone={profile?.timezone ?? null}
+        isPro={profile?.plan === "pro"}
       />
 
       {/* Plan */}

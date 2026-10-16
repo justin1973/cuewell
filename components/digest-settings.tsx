@@ -6,8 +6,8 @@ import { saveDigestPrefs } from "@/app/dashboard/actions";
 type Mode = "off" | "daily" | "every_4h";
 
 export function DigestSettings({
-  enabled, frequency, hour, timezone,
-}: { enabled: boolean; frequency: string; hour: number; timezone: string | null }) {
+  enabled, frequency, hour, timezone, isPro = false,
+}: { enabled: boolean; frequency: string; hour: number; timezone: string | null; isPro?: boolean }) {
   const [mode, setMode] = useState<Mode>(!enabled ? "off" : frequency === "every_4h" ? "every_4h" : "daily");
   const [h, setH] = useState<number>(hour ?? 8);
   const [tz, setTz] = useState<string>(timezone && timezone !== "UTC" ? timezone : "UTC");
@@ -31,12 +31,28 @@ export function DigestSettings({
       <p className="ph">Get your new leads by email, or keep everything in the dashboard only.</p>
 
       <div className="seg" role="group" aria-label="Email frequency" style={{ marginBottom: 14 }}>
-        {tabs.map((t) => (
-          <button key={t.key} type="button" className={mode === t.key ? "on" : ""} onClick={() => setMode(t.key)}>
-            {t.label}
-          </button>
-        ))}
+        {tabs.map((t) => {
+          const locked = t.key === "every_4h" && !isPro;
+          return (
+            <button
+              key={t.key}
+              type="button"
+              disabled={locked}
+              title={locked ? "Every 4 hours is a Pro feature" : undefined}
+              className={mode === t.key ? "on" : ""}
+              style={locked ? { opacity: 0.5, cursor: "not-allowed" } : undefined}
+              onClick={() => { if (!locked) setMode(t.key); }}
+            >
+              {t.label}{locked ? " · Pro" : ""}
+            </button>
+          );
+        })}
       </div>
+      {!isPro && (
+        <p className="hint" style={{ marginBottom: 14 }}>
+          Want leads every 4 hours instead of once a day? <a href="/dashboard/account" style={{ color: "var(--accent)", fontWeight: 600 }}>Upgrade to Pro</a>.
+        </p>
+      )}
 
       {mode === "off" ? (
         <p className="hint">You&apos;ll see leads in the dashboard only — no emails.</p>
