@@ -116,6 +116,43 @@ export default function LandingPage() {
         </div>
       </div>
 
+      {/* PRODUCT SHOT */}
+      <div className="wrap pblock">
+        <div className="sechead">
+          <div className="eyebrow">The dashboard</div>
+          <h2>Your opportunities, ranked by intent.</h2>
+          <p>Everything lands in one clean place. The hottest leads rise to the top — open, reply, close.</p>
+        </div>
+        <div className="shot">
+          <div className="shot-bar"><span /><span /><span /></div>
+          <div className="shot-body">
+            <div className="shot-tiles">
+              <div className="shot-tile"><div className="k">New today</div><div className="v tab-nums">3</div></div>
+              <div className="shot-tile"><div className="k">Hot waiting</div><div className="v tab-nums" style={{ color: "var(--hot)" }}>2</div></div>
+              <div className="shot-tile"><div className="k">Contacted</div><div className="v tab-nums">5</div></div>
+            </div>
+            <div className="shot-lead">
+              <div className="shot-top">
+                <div className="shot-chips"><span className="shot-chip">Hacker News</span><span>2 hours ago</span></div>
+                <div className="shot-score hot"><div className="v tab-nums">9</div><div className="k">intent</div></div>
+              </div>
+              <div className="shot-title">Looking for an alternative to Mailchimp — pricing got out of hand</div>
+              <p className="shot-quote">&quot;Bill jumped to $350/mo for a weekly newsletter. Ready to migrate this week.&quot;</p>
+              <span className="shot-open">Open post <Icon name="arrow-ur" /></span>
+            </div>
+            <div className="shot-lead">
+              <div className="shot-top">
+                <div className="shot-chips"><span className="shot-chip">Stack Exchange</span><span>5 hours ago</span></div>
+                <div className="shot-score warm"><div className="v tab-nums">7</div><div className="k">intent</div></div>
+              </div>
+              <div className="shot-title">Recommendations for a simple transactional email provider?</div>
+              <p className="shot-quote">&quot;Evaluating options for a small SaaS — want something less clunky than what we have.&quot;</p>
+              <span className="shot-open">Open post <Icon name="arrow-ur" /></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* PRICING */}
       <div className="band"><div className="wrap pblock">
         <div className="sechead">
@@ -155,6 +192,7 @@ export default function LandingPage() {
           ["How many leads should I expect?", "Quality over quantity. Depending on your niche you might see a few strong leads a week rather than hundreds a day — but each one is someone actively searching right now, which is exactly what makes them worth your time. Niches whose customers discuss tools and software online produce the most."],
           ["How often do I get leads?", "A daily email digest, or every 4 hours on the Pro plan. Only when there are new leads — no empty emails cluttering your inbox."],
           ["How does the AI know it's a real lead?", "It reads every post and assigns an intent score from 1 to 10, rewarding people who are actively searching, with urgency or budget, and discarding opinions, curiosity and generic discussion."],
+          ["Can't I just set up free keyword alerts myself?", "You can — tools like Google Alerts or F5Bot email you every mention of a keyword. The catch is they send everything: opinions, old threads, people not buying anything. You're back to triaging noise by hand. Cuewell reads each post, judges real intent, and sends only the ready-to-buy ones with a score — minutes of your time, not hours. One reply usually pays for the month."],
           ["Do you reply to leads for me?", "No. Cuewell brings you the right signal at the right time, with a link to the post. The conversation and the sale are yours — you're the expert, and a personal reply converts far better than an automated message."],
           ["Will it work for my niche?", "If your customers are people who are online and discuss software, products or digital services, yes. For purely local or offline markets it's less suited, because public conversations are scarce there."],
           ["Can I cancel anytime?", "Yes, anytime from your account settings. No lock-in, no penalty. The 7-day trial doesn't require a credit card."],
