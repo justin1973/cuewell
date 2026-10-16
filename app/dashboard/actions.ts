@@ -27,6 +27,15 @@ export async function setLeadStatus(leadId: string, status: string) {
   revalidatePath("/dashboard");
 }
 
+// Save a private note on a lead (empty string clears it).
+export async function setLeadNote(leadId: string, note: string) {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+  await supabase.from("leads").update({ note: note.trim() || null }).eq("id", leadId).eq("user_id", user.id);
+  revalidatePath("/dashboard");
+}
+
 // Create a new niche (watch), respecting the plan limit.
 export async function createWatch(formData: FormData) {
   const supabase = createClient();

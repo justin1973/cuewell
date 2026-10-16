@@ -96,6 +96,27 @@
 .pill:hover{background:var(--surface-3);color:var(--ink)}
 .pill.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
+.feedbar-2{margin-top:-4px;margin-bottom:16px}
+.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--border-2);border-radius:9px;padding:3px;background:var(--surface)}
+.seg .icn{width:15px;height:15px;color:var(--faint);margin:0 4px}
+.seg button{font-size:13px;font-weight:500;padding:5px 11px;border-radius:7px;border:0;background:none;color:var(--muted);cursor:pointer;font-family:inherit}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.minisel{border:1px solid var(--border-2);background:var(--surface);border-radius:9px;padding:7px 10px;font-size:13px;color:var(--ink);font-family:inherit;cursor:pointer}
+.minisel:focus{outline:none;border-color:var(--ink)}
+.group-h{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin:18px 0 10px;display:flex;align-items:center;gap:8px}
+.group-h .tab-nums{color:var(--border-2)}
+
+/* Insight line */
+.insight{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13.5px;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:16px}
+.insight .dotsep{color:var(--border-2)}
+.insight-strong{font-weight:600;color:var(--ink)}
+
+/* Lead note */
+.note-show{display:flex;align-items:flex-start;gap:7px;font-size:13px;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);border-radius:9px;padding:8px 11px;margin-bottom:12px;cursor:pointer}
+.note-show:hover{background:var(--surface-3)}
+.note-show .icn{width:14px;height:14px;flex:none;margin-top:2px;color:var(--faint)}
+.note-edit{margin-bottom:12px}
+
 /* 14-day chart */
 .chart{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:22px}
 .chart h3{font-size:13px;font-weight:600;margin:0 0 2px}

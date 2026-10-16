@@ -1,8 +1,8 @@
 "use client";
 
 import { Icon } from "@/components/icons";
-import { setLeadStatus } from "@/app/dashboard/actions";
-import { useTransition } from "react";
+import { setLeadStatus, setLeadNote } from "@/app/dashboard/actions";
+import { useState, useTransition } from "react";
 
 export type Lead = {
   id: string;
@@ -15,6 +15,8 @@ export type Lead = {
   status: string;
   source: string;
   created_at: string;
+  note?: string | null;
+  niche?: string | null;
 };
 
 const STATUS_LABEL: Record<string, string> = {
@@ -37,10 +39,16 @@ function timeAgo(iso: string) {
 
 export function LeadCard({ lead }: { lead: Lead }) {
   const [pending, start] = useTransition();
+  const [editingNote, setEditingNote] = useState(false);
+  const [noteDraft, setNoteDraft] = useState(lead.note ?? "");
   const band = lead.score >= 8 ? "hot" : "warm";
 
   function mark(status: string) {
     start(() => setLeadStatus(lead.id, status));
+  }
+  function saveNote() {
+    start(() => setLeadNote(lead.id, noteDraft));
+    setEditingNote(false);
   }
 
   return (
@@ -48,6 +56,7 @@ export function LeadCard({ lead }: { lead: Lead }) {
       <div className="top">
         <div className="lmeta">
           <span className="chip-src"><Icon name="msg" />{SOURCE_LABEL[lead.source] ?? lead.source}</span>
+          {lead.niche && <span className="tag">{lead.niche}</span>}
           <span>{timeAgo(lead.created_at)}</span>
           {lead.status !== "new" && STATUS_LABEL[lead.status] && <span className="tag">{STATUS_LABEL[lead.status]}</span>}
         </div>
@@ -62,12 +71,38 @@ export function LeadCard({ lead }: { lead: Lead }) {
         <div className="labels">{lead.labels.map((l) => <span className="tag" key={l}>{l}</span>)}</div>
       )}
       {lead.reason && <p className="reason">{lead.reason}</p>}
+
+      {/* Private note */}
+      {editingNote ? (
+        <div className="note-edit">
+          <textarea
+            className="input"
+            rows={2}
+            value={noteDraft}
+            onChange={(e) => setNoteDraft(e.target.value)}
+            placeholder="e.g. emailed on 16/10, waiting for reply"
+            autoFocus
+          />
+          <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
+            <button className="btn btn-primary sm" onClick={saveNote}>Save note</button>
+            <button className="btn btn-ghost sm" onClick={() => { setNoteDraft(lead.note ?? ""); setEditingNote(false); }}>Cancel</button>
+          </div>
+        </div>
+      ) : lead.note ? (
+        <div className="note-show" onClick={() => setEditingNote(true)} title="Click to edit">
+          <Icon name="edit" /><span>{lead.note}</span>
+        </div>
+      ) : null}
+
       <div className="lactions">
         <a className="btn btn-primary sm" href={lead.url} target="_blank" rel="noopener noreferrer">
           Open post<Icon name="arrow-ur" />
         </a>
         <button className={`sq ${lead.status === "saved" ? "on" : ""}`} aria-label="Save for later" title="Save for later" onClick={() => mark(lead.status === "saved" ? "new" : "saved")}><Icon name="bookmark" /></button>
         <button className={`sq ${lead.status === "contacted" ? "on" : ""}`} aria-label="Mark as contacted" title="Mark as contacted" onClick={() => mark(lead.status === "contacted" ? "new" : "contacted")}><Icon name="check" /></button>
+        {!lead.note && !editingNote && (
+          <button className="sq" aria-label="Add note" title="Add a private note" onClick={() => setEditingNote(true)}><Icon name="edit" /></button>
+        )}
         <button className="sq" aria-label="Archive" title="Archive" onClick={() => mark("archived")}><Icon name="archive" /></button>
       </div>
     </div>
