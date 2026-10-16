@@ -3,7 +3,7 @@ import { type Lead } from "@/components/lead-card";
 import { FeedList } from "@/components/feed-list";
 import { LeadsChart } from "@/components/leads-chart";
 import { Icon } from "@/components/icons";
-import Link from "next/link";
+import { EmptyFeed } from "@/components/empty-feed";
 
 export const dynamic = "force-dynamic";
 
@@ -22,10 +22,16 @@ export default async function FeedPage() {
       .neq("status", "archived")
       .order("created_at", { ascending: false })
       .limit(200),
-    supabase.from("watches").select("id, name").eq("user_id", user!.id),
+    supabase.from("watches").select("id, name, last_run_at").eq("user_id", user!.id),
   ]);
 
   const watchName = new Map((watches ?? []).map((w) => [w.id, w.name as string]));
+  const nicheCount = (watches ?? []).length;
+  const lastChecked = (watches ?? [])
+    .map((w) => w.last_run_at as string | null)
+    .filter(Boolean)
+    .sort()
+    .pop() ?? null;
   const list = ((leads ?? []) as (Lead & { watch_id: string })[]).map((l) => ({
     ...l,
     niche: watchName.get(l.watch_id) ?? null,
@@ -56,9 +62,6 @@ export default async function FeedPage() {
     return { label: d.toLocaleDateString("en-GB", { day: "numeric" }), n };
   });
 
-  const { count: watchCount } = await supabase
-    .from("watches").select("id", { count: "exact", head: true }).eq("user_id", user!.id);
-
   return (
     <>
       <div className="phead">
@@ -85,17 +88,8 @@ export default async function FeedPage() {
         <div className="tile"><div className="k">Saved</div><div className="v tab-nums">{saved}</div></div>
       </div>
 
-      {!watchCount ? (
-        <div className="empty">
-          <p style={{ fontWeight: 600, color: "var(--ink)", marginBottom: 6 }}>Tell Cuewell what to look for</p>
-          <p style={{ marginBottom: 16 }}>You haven&apos;t set up a niche yet. Without one, the engine doesn&apos;t know what to search for.</p>
-          <Link className="btn btn-primary sm" href="/dashboard/setup">Go to setup</Link>
-        </div>
-      ) : list.length === 0 ? (
-        <div className="empty">
-          <p style={{ fontWeight: 600, color: "var(--ink)", marginBottom: 6 }}>No leads yet</p>
-          <p>Cuewell checks your sources every hour. The first leads usually appear within a day — you can see the last check time on each niche in Setup.</p>
-        </div>
+      {list.length === 0 ? (
+        <EmptyFeed nicheCount={nicheCount} lastChecked={lastChecked} />
       ) : (
         <>
           <LeadsChart counts={chart} />
