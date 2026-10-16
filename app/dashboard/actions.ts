@@ -105,6 +105,28 @@ export async function deleteWatch(id: string) {
   revalidatePath("/dashboard/setup");
 }
 
+// Save email-digest preferences (off / daily / every 4h), delivery hour and timezone.
+export async function saveDigestPrefs(formData: FormData) {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return;
+
+  const mode = String(formData.get("mode") ?? "daily");       // off | daily | every_4h
+  const hour = Math.min(23, Math.max(0, parseInt(String(formData.get("hour") ?? "8"), 10) || 8));
+  const tz = String(formData.get("timezone") ?? "UTC").trim() || "UTC";
+
+  const admin = createAdminClient();
+  await admin.from("profiles").update({
+    digest_enabled: mode !== "off",
+    digest_frequency: mode === "every_4h" ? "every_4h" : "daily",
+    digest_hour: hour,
+    timezone: tz,
+  }).eq("id", user.id);
+
+  revalidatePath("/dashboard/account");
+  redirect("/dashboard/account?digest=saved");
+}
+
 // Update the account email (Supabase sends a confirmation to the new address).
 export async function updateEmail(formData: FormData) {
   const supabase = createClient();

@@ -3,6 +3,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { stripe } from "@/lib/stripe";
 import { updateEmail } from "../actions";
 import { Icon } from "@/components/icons";
+import { DigestSettings } from "@/components/digest-settings";
 
 export const dynamic = "force-dynamic";
 
@@ -47,7 +48,7 @@ function invBadge(status: string) {
 export default async function AccountPage({
   searchParams,
 }: {
-  searchParams: { email?: string; checkout?: string };
+  searchParams: { email?: string; checkout?: string; digest?: string };
 }) {
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -55,7 +56,7 @@ export default async function AccountPage({
   const admin = createAdminClient();
   const { data: profile } = await admin
     .from("profiles")
-    .select("subscription_status, plan, current_period_end, stripe_customer_id")
+    .select("subscription_status, plan, current_period_end, stripe_customer_id, digest_enabled, digest_frequency, digest_hour, timezone")
     .eq("id", user!.id)
     .maybeSingle();
 
@@ -93,6 +94,17 @@ export default async function AccountPage({
           <button className="btn btn-ghost sm" type="submit">Update email</button>
         </form>
       </div>
+
+      {/* Email digest */}
+      {searchParams.digest === "saved" && (
+        <div className="savebar"><Icon name="check" /> Digest preferences saved.</div>
+      )}
+      <DigestSettings
+        enabled={profile?.digest_enabled ?? true}
+        frequency={profile?.digest_frequency ?? "daily"}
+        hour={profile?.digest_hour ?? 8}
+        timezone={profile?.timezone ?? null}
+      />
 
       {/* Plan */}
       <div className="panel">
