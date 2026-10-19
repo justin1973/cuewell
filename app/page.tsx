@@ -1,16 +1,15 @@
 import Link from "next/link";
 import { Icon } from "@/components/icons";
+import { SiteNav } from "@/components/site-nav";
+import { SiteFooter } from "@/components/site-footer";
 import "./landing.css";
+
+export const dynamic = "force-dynamic";
 
 export default function LandingPage() {
   return (
     <>
-      <div className="topbar">
-        <div className="brand"><span className="logo" />Cuewell</div>
-        <div style={{ flex: 1 }} />
-        <Link className="btn btn-ghost sm" href="/login">Log in</Link>
-        <Link className="btn btn-primary sm" href="/login?mode=signup">Start free</Link>
-      </div>
+      <SiteNav />
 
       {/* HERO */}
       <div className="wrap hero">
@@ -232,7 +231,7 @@ export default function LandingPage() {
         ))}
       </div>
 
-      <div className="wrap"><footer><span>© 2026 Cuewell</span><span>cuewell.io</span></footer></div>
+      <SiteFooter />
     </>
   );
 }

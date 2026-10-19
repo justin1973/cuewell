@@ -125,3 +125,32 @@ footer{color:var(--faint);font-size:13px;padding-block:26px;border-top:1px solid
 .herohow span{display:inline-flex;align-items:center;gap:7px}
 .herohow .icn{width:15px;height:15px;color:var(--accent)}
 .hh-sep{width:5px;height:5px;border-radius:50%;background:var(--border-2);flex:none}
+
+/* Logged-in top bar */
+.navuser{display:inline-flex;align-items:center;gap:8px;margin-right:4px;max-width:220px}
+.navava{width:28px;height:28px;border-radius:50%;background:var(--surface-3);border:1px solid var(--border);color:var(--ink);font-weight:600;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none}
+.navemail{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:600px){.navemail{display:none}}
+
+/* Footer */
+.sitefoot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:28px 0;border-top:1px solid var(--border);color:var(--faint);font-size:13px;margin-top:40px}
+.footlinks{display:flex;gap:18px}
+.footlinks a{color:var(--muted)}
+.footlinks a:hover{color:var(--ink)}
+
+/* Legal / contact pages */
+.legal{padding-top:40px;padding-bottom:20px;max-width:860px}
+.legal-head{margin-bottom:28px}
+.legal-head h1{font-size:30px;margin:8px 0 6px}
+.legal-head p{color:var(--muted);font-size:15px;margin:0}
+.legal-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start}
+@media(max-width:720px){.legal-grid{grid-template-columns:1fr}}
+.legal-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px}
+.legal-card .field{margin-bottom:14px}
+.legal-card .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.legal-aside h3{font-size:15px;margin:0 0 4px}
+.legal-aside p{color:var(--muted);font-size:14px;line-height:1.55;margin:0}
+.legal-aside a{color:var(--accent);font-weight:600}
+.legal-prose h2{font-size:18px;margin:26px 0 8px}
+.legal-prose p{color:var(--muted);font-size:14.5px;line-height:1.65;margin:0}
+.legal-prose a{color:var(--accent);font-weight:600}
