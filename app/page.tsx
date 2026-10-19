@@ -116,6 +116,23 @@ export default function LandingPage() {
         </div>
       </div>
 
+      {/* FEATURES */}
+      <div className="band"><div className="wrap pblock">
+        <div className="sechead">
+          <div className="eyebrow">Everything you get</div>
+          <h2>From signal to conversation, all in one place.</h2>
+          <p>Finding the right posts is only half the job. Cuewell helps you act on them too.</p>
+        </div>
+        <div className="features">
+          <div className="feat"><div className="fic"><Icon name="zap" /></div><h3>AI intent scoring</h3><p>Every post scored 1–10 for real buying intent, so you spend time on the people actually ready to buy.</p></div>
+          <div className="feat"><div className="fic"><Icon name="tune" /></div><h3>AI niche wizard</h3><p>Describe what you sell in one sentence — the AI drafts your keywords and settings for you.</p></div>
+          <div className="feat"><div className="fic"><Icon name="msg" /></div><h3>Multiple sources</h3><p>Hacker News, Lobsters and Stack Exchange, watched around the clock through their official APIs.</p></div>
+          <div className="feat"><div className="fic"><Icon name="grid" /></div><h3>A dashboard that works</h3><p>Sort by intent, filter by niche or source, search your leads, and export everything to CSV.</p></div>
+          <div className="feat"><div className="fic"><Icon name="mail" /></div><h3>Email digest, your way</h3><p>Daily, every 4 hours, or off entirely — keep it in the dashboard. You decide how you&apos;re notified.</p></div>
+          <div className="feat"><div className="fic"><Icon name="bookmark" /></div><h3>Track every lead</h3><p>Mark contacted or saved, add a private note, and never lose track of a conversation.</p></div>
+        </div>
+      </div></div>
+
       {/* PRODUCT SHOT */}
       <div className="wrap pblock">
         <div className="sechead">
@@ -164,17 +181,24 @@ export default function LandingPage() {
           <div className="plan-card">
             <div className="pname">Solo</div>
             <div className="price tab-nums">€9<span>/mo</span></div>
+            <div className="pdesc">For a solo founder or freelancer watching one market.</div>
             <div className="check"><Icon name="check" />1 niche monitored</div>
+            <div className="check"><Icon name="check" />All 3 sources (HN, Lobsters, Stack Exchange)</div>
+            <div className="check"><Icon name="check" />AI intent scoring, 1–10</div>
+            <div className="check"><Icon name="check" />AI niche wizard (3 suggestions)</div>
             <div className="check"><Icon name="check" />Daily email digest</div>
-            <div className="check"><Icon name="check" />AI intent scoring</div>
+            <div className="check"><Icon name="check" />Dashboard, notes &amp; CSV export</div>
             <Link className="btn btn-ghost sm" style={{ marginTop: 16, width: "100%" }} href="/login?mode=signup">Get started</Link>
           </div>
           <div className="plan-card reco">
             <span className="ptag">Recommended</span>
             <div className="pname">Pro</div>
             <div className="price tab-nums">€19<span>/mo</span></div>
+            <div className="pdesc">For agencies and founders covering several markets.</div>
+            <div className="plus-label">Everything in Solo, plus:</div>
             <div className="check"><Icon name="check" />Unlimited niches</div>
-            <div className="check"><Icon name="check" />Digest every 4 hours</div>
+            <div className="check"><Icon name="check" />Email digest every 4 hours</div>
+            <div className="check"><Icon name="check" />Unlimited AI niche wizard</div>
             <div className="check"><Icon name="check" />More leads, across your niches</div>
             <Link className="btn btn-primary sm" style={{ marginTop: 16, width: "100%" }} href="/login?mode=signup">Start free</Link>
           </div>
