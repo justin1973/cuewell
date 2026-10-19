@@ -18,7 +18,7 @@ export default function TermsPage() {
           <p>Last updated: [date]</p>
         </div>
 
-        <p>These Terms &amp; Conditions (&quot;Terms&quot;) govern your access to and use of Cuewell (the &quot;Service&quot;), operated by [Company legal name], [registered address], VAT/Company no. [number] (&quot;we&quot;, &quot;us&quot;). By creating an account or using the Service you agree to these Terms. If you do not agree, do not use the Service.</p>
+        <p>These Terms &amp; Conditions (&quot;Terms&quot;) govern your access to and use of Cuewell (the &quot;Service&quot;), operated by Cuewell, an online service run by a private individual based in Italy (&quot;we&quot;, &quot;us&quot;). By creating an account or using the Service you agree to these Terms. If you do not agree, do not use the Service.</p>
 
         <h2>1. The Service</h2>
         <p>Cuewell monitors publicly available conversations on third-party platforms (currently Hacker News, Lobsters and Stack Exchange) and uses automated analysis to surface posts that may indicate buying intent relevant to the keywords and niches you configure. The Service presents these as &quot;leads&quot; in a dashboard and, optionally, by email.</p>
@@ -39,7 +39,7 @@ export default function TermsPage() {
         <p>The Service relies on data from third-party platforms accessed through their public interfaces. We do not control those platforms and are not responsible for their content, availability, accuracy, or changes to their access terms. A source may become unavailable without notice.</p>
 
         <h2>7. Your data &amp; privacy</h2>
-        <p>We process the personal data you provide (such as your email) to operate the Service, as described in our Privacy Policy. We act in accordance with applicable data-protection law, including the EU GDPR where relevant. [Link your Privacy Policy here.]</p>
+        <p>We process the personal data you provide (such as your email) to operate the Service, as described in our Privacy Policy. We act in accordance with applicable data-protection law, including the EU GDPR. See our <a href="/privacy">Privacy Policy</a> for details.</p>
 
         <h2>8. Intellectual property</h2>
         <p>The Service, including its software, design and content (excluding third-party post content and the data you input), is owned by us and protected by intellectual-property laws. We grant you a limited, non-exclusive, non-transferable right to use the Service for your own business purposes during your subscription.</p>
@@ -57,7 +57,7 @@ export default function TermsPage() {
         <p>We may update the Service and these Terms from time to time. Material changes to the Terms will be notified by reasonable means; continued use after changes take effect constitutes acceptance.</p>
 
         <h2>13. Governing law</h2>
-        <p>These Terms are governed by the laws of [country/region], and any dispute will be subject to the exclusive jurisdiction of the competent courts of [city/region], except where mandatory consumer-protection law provides otherwise.</p>
+        <p>These Terms are governed by the laws of Italy, and any dispute will be subject to the exclusive jurisdiction of the competent courts of Italy, except where mandatory consumer-protection law provides otherwise.</p>
 
         <h2>14. Contact</h2>
         <p>Questions about these Terms? Write to <a href="mailto:hello@cuewell.io">hello@cuewell.io</a> or use our <a href="/contact">contact page</a>.</p>

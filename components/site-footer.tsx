@@ -8,6 +8,7 @@ export function SiteFooter() {
         <nav className="footlinks">
           <Link href="/contact">Contact</Link>
           <Link href="/terms">Terms</Link>
+          <Link href="/privacy">Privacy</Link>
           <a href="https://cuewell.io">cuewell.io</a>
         </nav>
       </footer>
