@@ -88,6 +88,12 @@
 .danger p{font-size:13px;color:var(--muted);margin-bottom:12px}
 
 .hint{color:var(--faint);font-weight:400;font-size:12.5px}
+textarea.input{resize:vertical;min-height:52px;line-height:1.5}
+
+/* Niche wizard */
+.wizard{border:1px solid color-mix(in srgb,var(--accent) 32%,var(--border));background:var(--accent-soft)}
+.wizard h3{display:flex;align-items:center;gap:7px}
+.wizard h3 .icn{width:16px;height:16px;color:var(--accent)}
 .savebar.warn{background:var(--warm-bg);color:var(--warm);border-color:color-mix(in srgb,var(--warm) 30%,transparent)}
 
 /* Niches list */

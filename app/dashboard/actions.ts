@@ -20,6 +20,89 @@ function parseScore(v: FormDataEntryValue | null): number {
   return Math.min(10, Math.max(1, n));
 }
 
+// --- Niche wizard: AI drafts a niche config from a plain-language description ---
+const WIZARD_FREE_LIMIT = 3; // free generations for non-Pro users
+
+export type NicheSuggestion = {
+  name: string;
+  niche_description: string;
+  include_keywords: string[];
+  exclude_keywords: string[];
+  min_score: number;
+};
+
+export async function suggestNiche(description: string): Promise<{
+  ok: boolean; error?: string; remaining?: number | null; suggestion?: NicheSuggestion;
+}> {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { ok: false, error: "Please sign in again." };
+
+  const desc = (description ?? "").trim();
+  if (desc.length < 3) return { ok: false, error: "Describe what you sell first." };
+
+  const admin = createAdminClient();
+  const { data: prof } = await admin
+    .from("profiles").select("plan, niche_wizard_uses").eq("id", user.id).maybeSingle();
+  const isPro = prof?.plan === "pro";
+  const uses = prof?.niche_wizard_uses ?? 0;
+  if (!isPro && uses >= WIZARD_FREE_LIMIT) {
+    return { ok: false, error: "You've used all your free suggestions. Upgrade to Pro for unlimited.", remaining: 0 };
+  }
+
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) return { ok: false, error: "The niche wizard isn't configured yet." };
+
+  const prompt = `You configure an intent-based lead-generation monitor. The user describes what they sell; produce settings to catch public posts (on Hacker News, Lobsters, Stack Exchange) where someone is ACTIVELY looking to buy, adopt or switch to a product like theirs.
+
+User's description: "${desc}"
+
+Return ONLY a JSON object:
+{
+  "name": "<short label, 2-5 words>",
+  "niche_description": "<one or two sentences: what they sell and what counts as a lead>",
+  "include_keywords": ["<6-10 lowercase phrases people actually write when searching: 'alternative to <competitor>', 'looking for', 'any recommendations', 'switching from', etc. — specific to this niche>"],
+  "exclude_keywords": ["<2-5 lowercase noise words to exclude, e.g. 'hiring', 'job', 'course'>"],
+  "min_score": <integer 5-8, default 6>
+}`;
+
+  try {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${key}` },
+      body: JSON.stringify({
+        model: process.env.OPENAI_MODEL ?? "gpt-4o-mini",
+        temperature: 0.3,
+        response_format: { type: "json_object" },
+        messages: [{ role: "user", content: prompt }],
+      }),
+    });
+    if (!res.ok) return { ok: false, error: "Couldn't generate a suggestion. Try again in a moment." };
+    const data = await res.json();
+    const p = JSON.parse(data.choices[0].message.content);
+
+    const toList = (v: unknown, cap: number) =>
+      Array.isArray(v) ? v.map((x) => String(x).trim()).filter(Boolean).slice(0, cap) : [];
+    const score = parseInt(String(p.min_score ?? 6), 10);
+    const suggestion: NicheSuggestion = {
+      name: (String(p.name ?? "").trim() || "My niche").slice(0, 60),
+      niche_description: String(p.niche_description ?? "").trim().slice(0, 300),
+      include_keywords: toList(p.include_keywords, 12),
+      exclude_keywords: toList(p.exclude_keywords, 8),
+      min_score: Number.isNaN(score) ? 6 : Math.min(10, Math.max(1, score)),
+    };
+
+    let remaining: number | null = null;
+    if (!isPro) {
+      await admin.from("profiles").update({ niche_wizard_uses: uses + 1 }).eq("id", user.id);
+      remaining = Math.max(0, WIZARD_FREE_LIMIT - (uses + 1));
+    }
+    return { ok: true, suggestion, remaining };
+  } catch {
+    return { ok: false, error: "Couldn't generate a suggestion. Try again in a moment." };
+  }
+}
+
 // Change a lead's status (new / contacted / saved / archived).
 export async function setLeadStatus(leadId: string, status: string) {
   const supabase = createClient();

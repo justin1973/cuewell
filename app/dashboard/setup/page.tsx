@@ -1,9 +1,11 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { createWatch, updateWatch } from "../actions";
 import { NicheCard, type Watch } from "@/components/niche-card";
+import { NicheForm } from "@/components/niche-form";
 import { Icon } from "@/components/icons";
 import Link from "next/link";
+
+const WIZARD_FREE_LIMIT = 3;
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +29,7 @@ export default async function SetupPage({
       .select("id, name, niche_description, include_keywords, exclude_keywords, min_score, active, last_run_at")
       .eq("user_id", user!.id)
       .order("created_at", { ascending: true }),
-    admin.from("profiles").select("plan").eq("id", user!.id).maybeSingle(),
+    admin.from("profiles").select("plan, niche_wizard_uses").eq("id", user!.id).maybeSingle(),
     supabase.from("leads").select("watch_id").eq("user_id", user!.id),
   ]);
 
@@ -35,6 +37,7 @@ export default async function SetupPage({
   const leadsByWatch = new Map<string, number>();
   (leadRows ?? []).forEach((r) => leadsByWatch.set(r.watch_id, (leadsByWatch.get(r.watch_id) ?? 0) + 1));
   const isPro = profile?.plan === "pro";
+  const wizardRemaining = isPro ? null : Math.max(0, WIZARD_FREE_LIMIT - (profile?.niche_wizard_uses ?? 0));
   const limit = isPro ? Infinity : 1;
   const atLimit = list.length >= limit;
 
@@ -44,41 +47,11 @@ export default async function SetupPage({
   // ---- FORM VIEW (create or edit) ----
   if (showForm) {
     const w = editing;
-    const action = w ? updateWatch : createWatch;
     return (
       <>
         <div className="phead"><h2>{w ? "Edit niche" : "New niche"}</h2></div>
         <p className="subt">Tell Cuewell what to look for — the AI uses this to judge which posts are real leads.</p>
-
-        <form action={action} className="panel">
-          {w && <input type="hidden" name="id" value={w.id} />}
-          <div className="field">
-            <label>Name</label>
-            <input className="input" name="name" defaultValue={w?.name ?? ""} placeholder="e.g. Mailchimp switchers" required />
-          </div>
-          <div className="field">
-            <label>What you sell</label>
-            <input className="input" name="niche" defaultValue={w?.niche_description ?? ""} placeholder="Email marketing tool for small startups" />
-          </div>
-          <div className="field">
-            <label>Keywords to catch <span className="hint">(comma-separated)</span></label>
-            <input className="input" name="include" defaultValue={(w?.include_keywords ?? []).join(", ")} placeholder="alternative to mailchimp, switching from, email tool recommendation" />
-          </div>
-          <div className="field">
-            <label>Words to exclude <span className="hint">(comma-separated)</span></label>
-            <input className="input" name="exclude" defaultValue={(w?.exclude_keywords ?? []).join(", ")} placeholder="free, community, sites like" />
-          </div>
-          <div className="field">
-            <label>Minimum intent score <span className="hint">(1–10 — only keep leads at or above this)</span></label>
-            <input className="input" type="number" name="min_score" min={1} max={10} defaultValue={w?.min_score ?? 5} style={{ maxWidth: 120 }} />
-          </div>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button className="btn btn-primary sm" type="submit">{w ? "Save changes" : "Create niche"}</button>
-            {list.length > 0 && (
-              <Link className="btn btn-ghost sm" href="/dashboard/setup">Cancel</Link>
-            )}
-          </div>
-        </form>
+        <NicheForm watch={w} isPro={isPro} wizardRemaining={wizardRemaining} showCancel={list.length > 0} />
       </>
     );
   }
