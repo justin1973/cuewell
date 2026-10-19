@@ -19,12 +19,16 @@ export default function LandingPage() {
             <div className="eyebrow">For freelancers, agencies and founders</div>
             <h1>Every day, someone asks for what you sell. You just don&apos;t see it.</h1>
             <p className="sub">
-              Right now — on Hacker News, Lobsters and Stack Exchange — people are writing &quot;looking for an
-              alternative to [competitor]&quot; or &quot;any tool recommendations for…&quot;. These are buyers
-              ready to act. An advanced AI reads every conversation, works out who actually wants to
-              buy, and brings them to your inbox each morning — with an intent score. You reply while
-              it&apos;s hot.
+              Cuewell finds them for you. It reads public conversations, works out who&apos;s genuinely
+              ready to buy, and brings them to your inbox — so you reach out while they&apos;re still looking.
             </p>
+            <div className="herohow">
+              <span><Icon name="msg" />Reads public posts</span>
+              <span className="hh-sep" />
+              <span><Icon name="zap" />Scores buying intent</span>
+              <span className="hh-sep" />
+              <span><Icon name="mail" />Lands in your inbox</span>
+            </div>
             <div className="cta">
               <Link className="btn btn-primary" href="/login?mode=signup">
                 Start your 7-day trial<Icon name="arrow-right" />

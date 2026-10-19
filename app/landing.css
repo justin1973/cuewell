@@ -119,3 +119,9 @@ footer{color:var(--faint);font-size:13px;padding-block:26px;border-top:1px solid
 /* Pricing extras */
 .pdesc{font-size:13px;color:var(--muted);margin:2px 0 14px;line-height:1.45}
 .plus-label{font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+
+/* Hero three-step strip */
+.herohow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0 22px;font-size:13px;color:var(--muted);font-weight:500}
+.herohow span{display:inline-flex;align-items:center;gap:7px}
+.herohow .icn{width:15px;height:15px;color:var(--accent)}
+.hh-sep{width:5px;height:5px;border-radius:50%;background:var(--border-2);flex:none}
