@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { Suspense } from "react";
+import { GAListener } from "@/components/ga-listener";
 import "./globals.css";
+
+const GA_ID = "G-EYDTYE375X";
+const GA_ON = process.env.NODE_ENV === "production";
 
 export const metadata: Metadata = {
   title: "Cuewell — Find people already looking for what you sell",
@@ -18,7 +24,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+
+        {GA_ON && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}', { send_page_view: false });`}
+            </Script>
+            <Suspense fallback={null}>
+              <GAListener gaId={GA_ID} />
+            </Suspense>
+          </>
+        )}
+      </body>
     </html>
   );
 }

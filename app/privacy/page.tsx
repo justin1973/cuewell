@@ -35,7 +35,8 @@ export default function PrivacyPage() {
         • <strong>Stripe</strong> — payment processing.<br />
         • <strong>Resend</strong> — sending transactional and digest emails.<br />
         • <strong>OpenAI</strong> — analysing post content to score buying intent.<br />
-        • <strong>Vercel</strong> — hosting the website and application.</p>
+        • <strong>Vercel</strong> — hosting the website and application.<br />
+        • <strong>Google Analytics</strong> — aggregated, anonymous statistics on how visitors use our website.</p>
         <p>We do not sell your personal data.</p>
 
         <h2>5. International transfers</h2>
@@ -47,8 +48,8 @@ export default function PrivacyPage() {
         <h2>7. Your rights</h2>
         <p>Under the GDPR you have the right to access your data, correct it, delete it, restrict or object to its processing, and receive it in a portable format. Where processing is based on consent, you can withdraw it at any time. To exercise any of these, email <a href="mailto:hello@cuewell.io">hello@cuewell.io</a>. You also have the right to lodge a complaint with the Italian supervisory authority, the Garante per la protezione dei dati personali (garanteprivacy.it).</p>
 
-        <h2>8. Cookies</h2>
-        <p>We use only essential cookies required to sign you in and keep your session and the Service secure. We do not use third-party advertising or tracking cookies.</p>
+        <h2>8. Cookies &amp; analytics</h2>
+        <p>We use essential cookies required to sign you in and keep your session and the Service secure. We also use Google Analytics, which sets cookies to collect aggregated, anonymous statistics about how visitors use our website (such as pages viewed). We do not use advertising cookies. You can opt out of Google Analytics using Google&apos;s browser add-on or your browser&apos;s cookie settings.</p>
 
         <h2>9. People featured in leads</h2>
         <p>The Service surfaces publicly available posts, which may include the username and text of the person who posted. If you are the author of such a post and wish to have related data removed from our systems, contact us at <a href="mailto:hello@cuewell.io">hello@cuewell.io</a>.</p>
