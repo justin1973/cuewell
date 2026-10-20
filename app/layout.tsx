@@ -7,10 +7,36 @@ import "./globals.css";
 const GA_ID = "G-EYDTYE375X";
 const GA_ON = process.env.NODE_ENV === "production";
 
+const SITE = "https://cuewell.io";
+const DESC =
+  "Cuewell uses AI to find, on Hacker News, Lobsters and Stack Exchange, the people searching for what you sell — and brings them to your inbox with an intent score.";
+
 export const metadata: Metadata = {
-  title: "Cuewell — Find people already looking for what you sell",
-  description:
-    "Cuewell uses advanced AI to find, on Hacker News and in forums, the people searching for what you sell — and brings them to your inbox each morning with an intent score.",
+  metadataBase: new URL(SITE),
+  title: {
+    default: "Cuewell — Find people already looking for what you sell",
+    template: "%s · Cuewell",
+  },
+  description: DESC,
+  keywords: [
+    "lead generation", "intent data", "social listening", "buying intent",
+    "find customers", "Hacker News leads", "AI lead generation", "sales prospecting",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: SITE,
+    siteName: "Cuewell",
+    title: "Cuewell — Find people already looking for what you sell",
+    description: DESC,
+    locale: "en",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cuewell — Find people already looking for what you sell",
+    description: DESC,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

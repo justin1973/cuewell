@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/contact-form";
 import "../landing.css";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Contact · Cuewell" };
+export const metadata = { title: "Contact", description: "Get in touch with the Cuewell team — questions, feedback or help with your account." };
 
 export default function ContactPage() {
   return (

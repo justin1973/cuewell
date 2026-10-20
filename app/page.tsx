@@ -7,8 +7,24 @@ import "./landing.css";
 export const dynamic = "force-dynamic";
 
 export default function LandingPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Cuewell",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: "https://cuewell.io",
+    description:
+      "Cuewell uses AI to find, on Hacker News, Lobsters and Stack Exchange, the people searching for what you sell, and brings them to your inbox with an intent score.",
+    offers: [
+      { "@type": "Offer", name: "Solo", price: "9", priceCurrency: "EUR" },
+      { "@type": "Offer", name: "Pro", price: "19", priceCurrency: "EUR" },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <SiteNav />
 
       {/* HERO */}

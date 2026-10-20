@@ -2,7 +2,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import "../landing.css";
 
-export const metadata = { title: "Terms & Conditions · Cuewell" };
+export const metadata = { title: "Terms & Conditions", description: "The terms governing access to and use of the Cuewell service." };
 
 // NOTE FOR THE OWNER: replace the [bracketed] placeholders with your real legal
 // details and have this reviewed by a lawyer before relying on it. A separate

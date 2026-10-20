@@ -2,7 +2,7 @@ import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import "../landing.css";
 
-export const metadata = { title: "Privacy Policy · Cuewell" };
+export const metadata = { title: "Privacy Policy", description: "How Cuewell collects and handles your personal data under the EU GDPR." };
 
 // NOTE FOR THE OWNER: replace [bracketed] placeholders with the real data-controller
 // identity (your legal name as a private individual) and have this reviewed by a
