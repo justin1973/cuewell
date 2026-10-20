@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { AdminUserRow, type AdminUser } from "@/components/admin-user-row";
 import { AdminCreateUser } from "@/components/admin-create-user";
 import { LeadsChart } from "@/components/leads-chart";
+import { getGaStats } from "@/lib/ga";
 import { Icon } from "@/components/icons";
 import "../dashboard/dashboard.css";
 
@@ -109,6 +110,9 @@ export default async function AdminPage({
     return { label: d.toLocaleDateString("en-GB", { day: "numeric" }), n };
   });
 
+  // Live web analytics from Google Analytics (null if not configured yet).
+  const ga = await getGaStats();
+
   return (
     <div style={{ maxWidth: 1040, margin: "0 auto", padding: "22px 20px" }}>
       <div className="phead"><h2>Admin console</h2></div>
@@ -166,6 +170,39 @@ export default async function AdminPage({
         <p className="hint" style={{ marginTop: 2 }}>
           &quot;Active&quot; counts users by their last sign-in. Per-login history isn&apos;t stored yet — ask to add it for deeper access analytics.
         </p>
+      </div>
+
+      {/* Web analytics (Google Analytics) */}
+      <div className="admin-section">
+        <h3><Icon name="grid" />Web analytics <span className="hint">· Google Analytics</span></h3>
+        {ga ? (
+          <>
+            <div className="tiles" style={{ gridTemplateColumns: "repeat(4,1fr)", marginBottom: 16 }}>
+              <div className="tile"><div className="k">Visitors · 7d</div><div className="v tab-nums">{ga.users7}</div></div>
+              <div className="tile"><div className="k">Visitors · 30d</div><div className="v tab-nums">{ga.users30}</div></div>
+              <div className="tile"><div className="k">Page views · today</div><div className="v tab-nums">{ga.viewsToday}</div></div>
+              <div className="tile"><div className="k">Page views · 7d</div><div className="v tab-nums">{ga.views7}</div></div>
+            </div>
+            <LeadsChart counts={ga.chart} title="Page views — last 14 days" unit="view" />
+            {ga.topPages.length > 0 && (
+              <div className="panel" style={{ maxWidth: "none", marginTop: 12 }}>
+                <h3 style={{ fontSize: 14 }}>Top pages (7 days)</h3>
+                {ga.topPages.map((p) => (
+                  <div className="inv" key={p.path}>
+                    <span className="inv-date" style={{ fontWeight: 500 }}>{p.path}</span>
+                    <span className="inv-amt tab-nums">{p.views}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="panel" style={{ maxWidth: "none" }}>
+            <p className="ph" style={{ margin: 0 }}>
+              Live web stats aren&apos;t connected yet. Add <code>GA_PROPERTY_ID</code>, <code>GA_CLIENT_EMAIL</code> and <code>GA_PRIVATE_KEY</code> in Vercel (see the setup guide) to see visitors and page views here.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Users */}
