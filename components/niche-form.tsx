@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { createWatch, updateWatch, suggestNiche } from "@/app/dashboard/actions";
 import { Icon } from "@/components/icons";
+import { SubmitButton } from "@/components/submit-button";
 import type { Watch } from "@/components/niche-card";
 
 export function NicheForm({
@@ -90,7 +91,7 @@ export function NicheForm({
           <input className="input" type="number" name="min_score" min={1} max={10} value={minScore} onChange={(e) => setMinScore(parseInt(e.target.value, 10) || 5)} style={{ maxWidth: 120 }} />
         </div>
         <div style={{ display: "flex", gap: 8 }}>
-          <button className="btn btn-primary sm" type="submit">{editing ? "Save changes" : "Create niche"}</button>
+          <SubmitButton pendingText={editing ? "Saving…" : "Creating…"}>{editing ? "Save changes" : "Create niche"}</SubmitButton>
           {showCancel && <Link className="btn btn-ghost sm" href="/dashboard/setup">Cancel</Link>}
         </div>
       </form>

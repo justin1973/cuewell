@@ -4,6 +4,7 @@ import { stripe } from "@/lib/stripe";
 import { updateEmail } from "../actions";
 import { Icon } from "@/components/icons";
 import { DigestSettings } from "@/components/digest-settings";
+import { SubmitButton } from "@/components/submit-button";
 
 export const dynamic = "force-dynamic";
 
@@ -91,7 +92,7 @@ export default async function AccountPage({
             <label>Email address</label>
             <input className="input" type="email" name="email" defaultValue={user?.email ?? ""} required />
           </div>
-          <button className="btn btn-ghost sm" type="submit">Update email</button>
+          <SubmitButton className="btn btn-ghost sm" pendingText="Updating…">Update email</SubmitButton>
         </form>
       </div>
 

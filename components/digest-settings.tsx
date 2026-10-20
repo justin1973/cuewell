@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { saveDigestPrefs } from "@/app/dashboard/actions";
+import { SubmitButton } from "@/components/submit-button";
 
 type Mode = "off" | "daily" | "every_4h";
 
@@ -74,7 +75,7 @@ export function DigestSettings({
       <input type="hidden" name="mode" value={mode} />
       <input type="hidden" name="timezone" value={tz} />
 
-      <button className="btn btn-primary sm" type="submit" style={{ marginTop: 16 }}>Save preferences</button>
+      <SubmitButton pendingText="Saving…" style={{ marginTop: 16 }}>Save preferences</SubmitButton>
     </form>
   );
 }

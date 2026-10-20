@@ -3,6 +3,7 @@ import { createAdminClient, isAdmin } from "@/lib/supabase/admin";
 import { redirect } from "next/navigation";
 import { AdminUserRow, type AdminUser } from "@/components/admin-user-row";
 import { AdminCreateUser } from "@/components/admin-create-user";
+import { LeadsChart } from "@/components/leads-chart";
 import { Icon } from "@/components/icons";
 import "../dashboard/dashboard.css";
 
@@ -93,6 +94,21 @@ export default async function AdminPage({
   const engineFresh = last ? Date.now() - new Date(last).getTime() < 2 * 3_600_000 : false;
   const createdMsg = searchParams.created ? CREATED_MSG[searchParams.created] : undefined;
 
+  // Analytics (derived from what Supabase gives us: signup dates + last sign-in).
+  const monthAgo = new Date(Date.now() - 30 * 86_400_000).toISOString();
+  const active24 = users.filter((u) => u.lastSignIn && u.lastSignIn >= dayAgo).length;
+  const active7 = users.filter((u) => u.lastSignIn && u.lastSignIn >= weekAgo).length;
+  const active30 = users.filter((u) => u.lastSignIn && u.lastSignIn >= monthAgo).length;
+
+  const days = Array.from({ length: 14 }, (_, i) => {
+    const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - (13 - i)); return d;
+  });
+  const signupChart = days.map((d) => {
+    const next = new Date(d); next.setDate(d.getDate() + 1);
+    const n = users.filter((u) => u.createdAt && new Date(u.createdAt) >= d && new Date(u.createdAt) < next).length;
+    return { label: d.toLocaleDateString("en-GB", { day: "numeric" }), n };
+  });
+
   return (
     <div style={{ maxWidth: 1040, margin: "0 auto", padding: "22px 20px" }}>
       <div className="phead"><h2>Admin console</h2></div>
@@ -136,6 +152,20 @@ export default async function AdminPage({
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Analytics */}
+      <div className="admin-section">
+        <h3><Icon name="activity" />Analytics</h3>
+        <div className="tiles" style={{ gridTemplateColumns: "repeat(3,1fr)", marginBottom: 16 }}>
+          <div className="tile"><div className="k">Active · 24h</div><div className="v tab-nums">{active24}</div></div>
+          <div className="tile"><div className="k">Active · 7 days</div><div className="v tab-nums">{active7}</div></div>
+          <div className="tile"><div className="k">Active · 30 days</div><div className="v tab-nums">{active30}</div></div>
+        </div>
+        <LeadsChart counts={signupChart} title="New signups — last 14 days" unit="signup" />
+        <p className="hint" style={{ marginTop: 2 }}>
+          &quot;Active&quot; counts users by their last sign-in. Per-login history isn&apos;t stored yet — ask to add it for deeper access analytics.
+        </p>
       </div>
 
       {/* Users */}
