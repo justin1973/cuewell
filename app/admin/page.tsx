@@ -116,19 +116,46 @@ export default async function AdminPage({
   return (
     <div style={{ maxWidth: 1040, margin: "0 auto", padding: "22px 20px" }}>
       <div className="phead"><h2>Admin console</h2></div>
-      <p className="subt">Users, revenue and system health for Cuewell.</p>
+      <p className="subt">The business at a glance — from visitors to paying customers.</p>
 
-      {/* Metrics */}
+      {/* GROWTH — the funnel */}
       <div className="admin-section">
-        <div className="tiles" style={{ gridTemplateColumns: "repeat(4,1fr)" }}>
-          <div className="tile"><div className="k">Total users</div><div className="v tab-nums">{total}</div></div>
+        <h3><Icon name="activity" />Growth</h3>
+        <div className="tiles funnel" style={{ gridTemplateColumns: "repeat(5,1fr)", marginBottom: 14 }}>
+          <div className="tile"><div className="k">Visitors · 30d</div><div className="v tab-nums">{ga ? ga.users30 : "—"}</div></div>
+          <div className="tile"><div className="k">Signups</div><div className="v tab-nums">{total}</div></div>
+          <div className="tile"><div className="k">Active · 30d</div><div className="v tab-nums">{active30}</div></div>
           <div className="tile"><div className="k">Paying</div><div className="v tab-nums">{paying}</div></div>
-          <div className="tile"><div className="k">MRR</div><div className="v tab-nums">€{mrr}</div></div>
-          <div className="tile"><div className="k">New (7d)</div><div className="v tab-nums">{newWeek}</div></div>
+          <div className="tile"><div className="k">MRR</div><div className="v tab-nums" style={{ color: mrr > 0 ? "var(--ok)" : undefined }}>€{mrr}</div></div>
         </div>
+
+        <div className="chart-grid">
+          {ga && <LeadsChart counts={ga.chart} title="Page views — last 14 days" unit="view" />}
+          <LeadsChart counts={signupChart} title="New signups — last 14 days" unit="signup" />
+        </div>
+
+        {ga && ga.topPages.length > 0 && (
+          <div className="panel" style={{ maxWidth: "none", marginTop: 12 }}>
+            <h3 style={{ fontSize: 14 }}>Top pages <span className="hint">· 7 days</span></h3>
+            {ga.topPages.map((p) => (
+              <div className="inv" key={p.path}>
+                <span className="inv-date" style={{ fontWeight: 500 }}>{p.path}</span>
+                <span className="inv-amt tab-nums">{p.views}</span>
+              </div>
+            ))}
+          </div>
+        )}
+        {!ga && (
+          <p className="hint" style={{ marginTop: 10 }}>
+            Visitor numbers are blank until Google Analytics is connected (add <code>GA_PROPERTY_ID</code>, <code>GA_CLIENT_EMAIL</code>, <code>GA_PRIVATE_KEY</code> on Vercel — see the setup guide).
+          </p>
+        )}
+        <p className="hint" style={{ marginTop: 10 }}>
+          Active users: {active24} today · {active7} this week · {active30} this month. New signups (7d): {newWeek}. Trials: {trialing}.
+        </p>
       </div>
 
-      {/* System health */}
+      {/* SYSTEM HEALTH */}
       <div className="admin-section">
         <h3><Icon name="activity" />System health</h3>
         <div className="panel" style={{ maxWidth: "none", marginBottom: 0 }}>
@@ -151,58 +178,11 @@ export default async function AdminPage({
               <div style={{ fontWeight: 600 }} className="tab-nums">{leads24 ?? 0} / {leads7 ?? 0}</div>
             </div>
             <div>
-              <div style={{ fontSize: 13, color: "var(--muted)" }}>Trials · Suspended</div>
-              <div style={{ fontWeight: 600 }} className="tab-nums">{trialing} · {suspended}</div>
+              <div style={{ fontSize: 13, color: "var(--muted)" }}>Suspended</div>
+              <div style={{ fontWeight: 600 }} className="tab-nums">{suspended}</div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Analytics */}
-      <div className="admin-section">
-        <h3><Icon name="activity" />Analytics</h3>
-        <div className="tiles" style={{ gridTemplateColumns: "repeat(3,1fr)", marginBottom: 16 }}>
-          <div className="tile"><div className="k">Active · 24h</div><div className="v tab-nums">{active24}</div></div>
-          <div className="tile"><div className="k">Active · 7 days</div><div className="v tab-nums">{active7}</div></div>
-          <div className="tile"><div className="k">Active · 30 days</div><div className="v tab-nums">{active30}</div></div>
-        </div>
-        <LeadsChart counts={signupChart} title="New signups — last 14 days" unit="signup" />
-        <p className="hint" style={{ marginTop: 2 }}>
-          &quot;Active&quot; counts users by their last sign-in. Per-login history isn&apos;t stored yet — ask to add it for deeper access analytics.
-        </p>
-      </div>
-
-      {/* Web analytics (Google Analytics) */}
-      <div className="admin-section">
-        <h3><Icon name="grid" />Web analytics <span className="hint">· Google Analytics</span></h3>
-        {ga ? (
-          <>
-            <div className="tiles" style={{ gridTemplateColumns: "repeat(4,1fr)", marginBottom: 16 }}>
-              <div className="tile"><div className="k">Visitors · 7d</div><div className="v tab-nums">{ga.users7}</div></div>
-              <div className="tile"><div className="k">Visitors · 30d</div><div className="v tab-nums">{ga.users30}</div></div>
-              <div className="tile"><div className="k">Page views · today</div><div className="v tab-nums">{ga.viewsToday}</div></div>
-              <div className="tile"><div className="k">Page views · 7d</div><div className="v tab-nums">{ga.views7}</div></div>
-            </div>
-            <LeadsChart counts={ga.chart} title="Page views — last 14 days" unit="view" />
-            {ga.topPages.length > 0 && (
-              <div className="panel" style={{ maxWidth: "none", marginTop: 12 }}>
-                <h3 style={{ fontSize: 14 }}>Top pages (7 days)</h3>
-                {ga.topPages.map((p) => (
-                  <div className="inv" key={p.path}>
-                    <span className="inv-date" style={{ fontWeight: 500 }}>{p.path}</span>
-                    <span className="inv-amt tab-nums">{p.views}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="panel" style={{ maxWidth: "none" }}>
-            <p className="ph" style={{ margin: 0 }}>
-              Live web stats aren&apos;t connected yet. Add <code>GA_PROPERTY_ID</code>, <code>GA_CLIENT_EMAIL</code> and <code>GA_PRIVATE_KEY</code> in Vercel (see the setup guide) to see visitors and page views here.
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Users */}

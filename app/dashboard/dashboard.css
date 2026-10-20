@@ -166,6 +166,10 @@ textarea.input{resize:vertical;min-height:52px;line-height:1.5}
 .note-show .icn{width:14px;height:14px;flex:none;margin-top:2px;color:var(--faint)}
 .note-edit{margin-bottom:12px}
 
+/* Side-by-side charts (admin growth) */
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.chart-grid .chart{margin-bottom:0}
+
 /* 14-day chart */
 .chart{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:22px}
 .chart h3{font-size:13px;font-weight:600;margin:0 0 2px}
