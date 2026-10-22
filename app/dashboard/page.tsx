@@ -8,7 +8,7 @@ import { EmptyFeed } from "@/components/empty-feed";
 export const dynamic = "force-dynamic";
 
 const SOURCE_LABEL: Record<string, string> = {
-  hackernews: "Hacker News", lobsters: "Lobsters", stackexchange: "Stack Exchange",
+  hackernews: "Hacker News", lobsters: "Lobsters", stackexchange: "Stack Exchange", devto: "Dev.to", bluesky: "Bluesky",
 };
 
 export default async function FeedPage() {

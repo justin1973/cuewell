@@ -24,7 +24,7 @@ const STATUS_LABEL: Record<string, string> = {
 };
 
 const SOURCE_LABEL: Record<string, string> = {
-  hackernews: "Hacker News", lobsters: "Lobsters", stackexchange: "Stack Exchange",
+  hackernews: "Hacker News", lobsters: "Lobsters", stackexchange: "Stack Exchange", devto: "Dev.to", bluesky: "Bluesky",
 };
 
 function timeAgo(iso: string) {
