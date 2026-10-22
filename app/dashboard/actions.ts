@@ -53,7 +53,7 @@ export async function suggestNiche(description: string): Promise<{
   const key = process.env.OPENAI_API_KEY;
   if (!key) return { ok: false, error: "The niche wizard isn't configured yet." };
 
-  const prompt = `You configure an intent-based lead-generation monitor. The user describes what they sell; produce settings to catch public posts (on Hacker News, Lobsters, Stack Exchange) where someone is ACTIVELY looking to buy, adopt or switch to a product like theirs.
+  const prompt = `You configure an intent-based lead-generation monitor. The user describes what they sell; produce settings to catch public posts (on Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky) where someone is ACTIVELY looking to buy, adopt or switch to a product like theirs.
 
 User's description: "${desc}"
 

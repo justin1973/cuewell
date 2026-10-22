@@ -45,7 +45,7 @@ export function EmptyFeed({ nicheCount, lastChecked }: { nicheCount: number; las
         <div className="estate-badge pulse"><Icon name="activity" /></div>
         <h3>Cuewell is on watch</h3>
         <p>
-          Monitoring {nicheCount} {nicheCount === 1 ? "niche" : "niches"} across Hacker News, Lobsters and Stack Exchange.
+          Monitoring {nicheCount} {nicheCount === 1 ? "niche" : "niches"} across Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky.
           Last checked {timeAgo(lastChecked)}.
         </p>
         <div className="estate-steps">

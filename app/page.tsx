@@ -15,7 +15,7 @@ export default function LandingPage() {
     operatingSystem: "Web",
     url: "https://cuewell.io",
     description:
-      "Cuewell uses AI to find, on Hacker News, Lobsters and Stack Exchange, the people searching for what you sell, and brings them to your inbox with an intent score.",
+      "Cuewell uses AI to find, across Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky, the people searching for what you sell, and brings them to your inbox with an intent score.",
     offers: [
       { "@type": "Offer", name: "Solo", price: "9", priceCurrency: "EUR" },
       { "@type": "Offer", name: "Pro", price: "19", priceCurrency: "EUR" },
@@ -145,7 +145,7 @@ export default function LandingPage() {
         <div className="features">
           <div className="feat"><div className="fic"><Icon name="zap" /></div><h3>AI intent scoring</h3><p>Every post scored 1–10 for real buying intent, so you spend time on the people actually ready to buy.</p></div>
           <div className="feat"><div className="fic"><Icon name="tune" /></div><h3>AI niche wizard</h3><p>Describe what you sell in one sentence — the AI drafts your keywords and settings for you.</p></div>
-          <div className="feat"><div className="fic"><Icon name="msg" /></div><h3>Multiple sources</h3><p>Hacker News, Lobsters and Stack Exchange, watched around the clock through their official APIs.</p></div>
+          <div className="feat"><div className="fic"><Icon name="msg" /></div><h3>Multiple sources</h3><p>Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky, watched around the clock through their official APIs.</p></div>
           <div className="feat"><div className="fic"><Icon name="grid" /></div><h3>A dashboard that works</h3><p>Sort by intent, filter by niche or source, search your leads, and export everything to CSV.</p></div>
           <div className="feat"><div className="fic"><Icon name="mail" /></div><h3>Email digest, your way</h3><p>Daily, every 4 hours, or off entirely — keep it in the dashboard. You decide how you&apos;re notified.</p></div>
           <div className="feat"><div className="fic"><Icon name="bookmark" /></div><h3>Track every lead</h3><p>Mark contacted or saved, add a private note, and never lose track of a conversation.</p></div>
@@ -178,7 +178,7 @@ export default function LandingPage() {
             </div>
             <div className="shot-lead">
               <div className="shot-top">
-                <div className="shot-chips"><span className="shot-chip">Stack Exchange</span><span>5 hours ago</span></div>
+                <div className="shot-chips"><span className="shot-chip">Bluesky</span><span>5 hours ago</span></div>
                 <div className="shot-score warm"><div className="v tab-nums">7</div><div className="k">intent</div></div>
               </div>
               <div className="shot-title">Recommendations for a simple transactional email provider?</div>
@@ -202,7 +202,7 @@ export default function LandingPage() {
             <div className="price tab-nums">€9<span>/mo</span></div>
             <div className="pdesc">For a solo founder or freelancer watching one market.</div>
             <div className="check"><Icon name="check" />1 niche monitored</div>
-            <div className="check"><Icon name="check" />All 3 sources (HN, Lobsters, Stack Exchange)</div>
+            <div className="check"><Icon name="check" />All 5 sources (HN, Lobsters, Stack Exchange, Dev.to, Bluesky)</div>
             <div className="check"><Icon name="check" />AI intent scoring, 1–10</div>
             <div className="check"><Icon name="check" />AI niche wizard (3 suggestions)</div>
             <div className="check"><Icon name="check" />Daily email digest</div>
@@ -231,7 +231,7 @@ export default function LandingPage() {
           <h2>Frequently asked questions</h2>
         </div>
         {[
-          ["Where do the leads come from?", "From public conversations on Hacker News, Lobsters and Stack Exchange, via their official APIs. No grey-area scraping and no private data — only what people write openly."],
+          ["Where do the leads come from?", "From public conversations on Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky, via their official APIs. No grey-area scraping and no private data — only what people write openly."],
           ["How many leads should I expect?", "Quality over quantity. Depending on your niche you might see a few strong leads a week rather than hundreds a day — but each one is someone actively searching right now, which is exactly what makes them worth your time. Niches whose customers discuss tools and software online produce the most."],
           ["How often do I get leads?", "A daily email digest, or every 4 hours on the Pro plan. Only when there are new leads — no empty emails cluttering your inbox."],
           ["How does the AI know it's a real lead?", "It reads every post and assigns an intent score from 1 to 10, rewarding people who are actively searching, with urgency or budget, and discarding opinions, curiosity and generic discussion."],

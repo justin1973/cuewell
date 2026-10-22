@@ -21,7 +21,7 @@ export default function TermsPage() {
         <p>These Terms &amp; Conditions (&quot;Terms&quot;) govern your access to and use of Cuewell (the &quot;Service&quot;), operated by Cuewell, an online service run by a private individual based in Italy (&quot;we&quot;, &quot;us&quot;). By creating an account or using the Service you agree to these Terms. If you do not agree, do not use the Service.</p>
 
         <h2>1. The Service</h2>
-        <p>Cuewell monitors publicly available conversations on third-party platforms (currently Hacker News, Lobsters and Stack Exchange) and uses automated analysis to surface posts that may indicate buying intent relevant to the keywords and niches you configure. The Service presents these as &quot;leads&quot; in a dashboard and, optionally, by email.</p>
+        <p>Cuewell monitors publicly available conversations on third-party platforms (currently Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky) and uses automated analysis to surface posts that may indicate buying intent relevant to the keywords and niches you configure. The Service presents these as &quot;leads&quot; in a dashboard and, optionally, by email.</p>
 
         <h2>2. Eligibility &amp; accounts</h2>
         <p>You must be at least 18 years old and able to enter into a binding contract. You are responsible for the accuracy of the information you provide, for keeping your login credentials secure, and for all activity under your account.</p>

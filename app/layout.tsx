@@ -9,7 +9,7 @@ const GA_ON = process.env.NODE_ENV === "production";
 
 const SITE = "https://cuewell.io";
 const DESC =
-  "Cuewell uses AI to find, on Hacker News, Lobsters and Stack Exchange, the people searching for what you sell — and brings them to your inbox with an intent score.";
+  "Cuewell uses AI to find, across Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky, the people searching for what you sell — and brings them to your inbox with an intent score.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
