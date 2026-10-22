@@ -14,8 +14,8 @@ function planBadge(plan: string | null, status: string | null) {
 }
 
 export function Sidebar({
-  items, initials, subtitle, plan = null, status = null,
-}: { items: Item[]; initials: string; subtitle: string; plan?: string | null; status?: string | null }) {
+  items, initials, subtitle, plan = null, status = null, trialEndsInDays = null,
+}: { items: Item[]; initials: string; subtitle: string; plan?: string | null; status?: string | null; trialEndsInDays?: number | null }) {
   const path = usePathname();
   const badge = planBadge(plan, status);
   return (
@@ -38,6 +38,21 @@ export function Sidebar({
           );
         })}
       </nav>
+      {status === "trialing" && trialEndsInDays !== null && (
+        <div className="trial-nudge">
+          <div className="tn-top">
+            <Icon name="zap" />
+            {trialEndsInDays === 0
+              ? "Your trial ends today"
+              : trialEndsInDays === 1
+                ? "1 day left in your trial"
+                : `${trialEndsInDays} days left in your trial`}
+          </div>
+          <Link href="/dashboard/account" className="btn btn-primary sm">
+            Choose your plan<Icon name="arrow-right" />
+          </Link>
+        </div>
+      )}
       <div className="sidefoot">
         <form action="/auth/signout" method="post">
           <button className="signout" type="submit"><Icon name="logout" />Sign out</button>

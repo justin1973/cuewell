@@ -19,7 +19,7 @@ export default async function FeedPage() {
     supabase
       .from("leads")
       .select("id, url, title, excerpt, score, reason, labels, status, source, created_at, note, watch_id")
-      .neq("status", "archived")
+      .not("status", "in", "(archived,irrelevant)")
       .order("created_at", { ascending: false })
       .limit(200),
     supabase.from("watches").select("id, name, last_run_at").eq("user_id", user!.id),

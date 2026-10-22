@@ -103,7 +103,9 @@ Return ONLY a JSON object:
   }
 }
 
-// Change a lead's status (new / contacted / saved / archived).
+// Change a lead's status (new / contacted / saved / archived / irrelevant).
+// "irrelevant" is the user's feedback that the AI scored a non-lead: it hides
+// the card and gives us a signal to tune scoring later.
 export async function setLeadStatus(leadId: string, status: string) {
   const supabase = createClient();
   await supabase.from("leads").update({ status }).eq("id", leadId);

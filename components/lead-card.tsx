@@ -103,6 +103,7 @@ export function LeadCard({ lead }: { lead: Lead }) {
         {!lead.note && !editingNote && (
           <button className="sq" aria-label="Add note" title="Add a private note" onClick={() => setEditingNote(true)}><Icon name="edit" /></button>
         )}
+        <button className="sq" aria-label="Not relevant" title="Not relevant — tell the AI it got this one wrong" onClick={() => mark("irrelevant")}><Icon name="ban" /></button>
         <button className="sq" aria-label="Archive" title="Archive" onClick={() => mark("archived")}><Icon name="archive" /></button>
       </div>
     </div>
