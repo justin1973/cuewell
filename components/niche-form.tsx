@@ -50,7 +50,7 @@ export function NicheForm({
         <p className="ph">Describe what you sell in one sentence — the AI drafts the keywords for you. You can edit everything before saving.</p>
         <textarea
           className="input" rows={2} value={desc} onChange={(e) => setDesc(e.target.value)}
-          placeholder="e.g. An email marketing tool for small startups moving away from Mailchimp"
+          placeholder="e.g. An email tool for startups leaving Mailchimp — or a freelance React developer for SaaS teams"
           disabled={outOfUses}
         />
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 10, flexWrap: "wrap" }}>

@@ -53,7 +53,7 @@ export async function suggestNiche(description: string): Promise<{
   const key = process.env.OPENAI_API_KEY;
   if (!key) return { ok: false, error: "The niche wizard isn't configured yet." };
 
-  const prompt = `You configure an intent-based lead-generation monitor. The user describes what they sell; produce settings to catch public posts (on Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky) where someone is ACTIVELY looking to buy, adopt or switch to a product like theirs.
+  const prompt = `You configure an intent-based lead-generation monitor. The user sells either a product or their own services/skills; produce settings to catch public posts (on Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky) where someone is ACTIVELY looking to buy a product like theirs, OR to hire someone for the kind of work they do.
 
 User's description: "${desc}"
 
@@ -61,8 +61,8 @@ Return ONLY a JSON object:
 {
   "name": "<short label, 2-5 words>",
   "niche_description": "<one or two sentences: what they sell and what counts as a lead>",
-  "include_keywords": ["<6-10 lowercase phrases people actually write when searching: 'alternative to <competitor>', 'looking for', 'any recommendations', 'switching from', etc. — specific to this niche>"],
-  "exclude_keywords": ["<2-5 lowercase noise words to exclude, e.g. 'hiring', 'job', 'course'>"],
+  "include_keywords": ["<6-10 lowercase phrases people actually write. For a PRODUCT: 'alternative to <competitor>', 'looking for', 'any recommendations', 'switching from'. For a SERVICE: 'looking for a <role>', 'need help building', 'anyone know a good <role>', 'hiring a <role>'. Specific to this niche>"],
+  "exclude_keywords": ["<2-5 lowercase noise words that would cause false positives for THIS niche — decide based on whether they sell a product or a service (do NOT exclude hiring words for a freelancer/agency)>"],
   "min_score": <integer 5-8, default 6>
 }`;
 
