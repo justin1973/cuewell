@@ -31,11 +31,12 @@ export default function LandingPage() {
       <div className="wrap hero">
         <div className="herogrid">
           <div>
-            <div className="eyebrow">For freelancers, agencies and founders</div>
+            <div className="eyebrow">For indie founders, freelancers and agencies</div>
             <h1>Every day, someone asks for what you sell. You just don&apos;t see it.</h1>
             <p className="sub">
-              Cuewell finds them for you. It reads public conversations, works out who&apos;s genuinely
-              ready to buy, and brings them to your inbox — so you reach out while they&apos;re still looking.
+              Cuewell reads the public conversations where founders and developers talk, works out
+              who&apos;s genuinely looking to buy — your product or your skills — and brings them to your
+              inbox, so you reach out while they&apos;re still searching.
             </p>
             <div className="herohow">
               <span><Icon name="msg" />Reads public posts</span>
@@ -179,10 +180,10 @@ export default function LandingPage() {
             <div className="shot-lead">
               <div className="shot-top">
                 <div className="shot-chips"><span className="shot-chip">Bluesky</span><span>5 hours ago</span></div>
-                <div className="shot-score warm"><div className="v tab-nums">7</div><div className="k">intent</div></div>
+                <div className="shot-score hot"><div className="v tab-nums">8</div><div className="k">intent</div></div>
               </div>
-              <div className="shot-title">Recommendations for a simple transactional email provider?</div>
-              <p className="shot-quote">&quot;Evaluating options for a small SaaS — want something less clunky than what we have.&quot;</p>
+              <div className="shot-title">Looking to hire a freelance React dev for our MVP</div>
+              <p className="shot-quote">&quot;Funded two-person team, need someone experienced to build the frontend. Hoping to start within a week.&quot;</p>
               <span className="shot-open">Open post <Icon name="arrow-ur" /></span>
             </div>
           </div>
@@ -233,6 +234,7 @@ export default function LandingPage() {
         {[
           ["Where do the leads come from?", "From public conversations on Hacker News, Lobsters, Stack Exchange, Dev.to and Bluesky, via their official APIs. No grey-area scraping and no private data — only what people write openly."],
           ["How many leads should I expect?", "Quality over quantity. Depending on your niche you might see a few strong leads a week rather than hundreds a day — but each one is someone actively searching right now, which is exactly what makes them worth your time. Niches whose customers discuss tools and software online produce the most."],
+          ["Is Cuewell a good fit for what I sell?", "It works best if your customers are founders, developers, startups and tech-savvy early adopters — the people who discuss their needs openly on platforms like Hacker News and Bluesky. That covers both makers selling a product and freelancers or agencies selling their skills. If you sell mainly to the general public, who rarely post 'looking for X' in public, Cuewell isn't the right tool for you yet — and we'd rather say so upfront than take your money."],
           ["How often do I get leads?", "A daily email digest, or every 4 hours on the Pro plan. Only when there are new leads — no empty emails cluttering your inbox."],
           ["How does the AI know it's a real lead?", "It reads every post and assigns an intent score from 1 to 10, rewarding people who are actively searching, with urgency or budget, and discarding opinions, curiosity and generic discussion."],
           ["Can't I just set up free keyword alerts myself?", "You can — tools like Google Alerts or F5Bot email you every mention of a keyword. The catch is they send everything: opinions, old threads, people not buying anything. You're back to triaging noise by hand. Cuewell reads each post, judges real intent, and sends only the ready-to-buy ones with a score — minutes of your time, not hours. One reply usually pays for the month."],
