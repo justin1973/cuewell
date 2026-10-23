@@ -8,7 +8,7 @@ type Filter = "all" | "new" | "hot" | "saved" | "contacted";
 type Sort = "hot" | "new";
 
 const SOURCE_LABEL: Record<string, string> = {
-  hackernews: "Hacker News", lobsters: "Lobsters", stackexchange: "Stack Exchange", devto: "Dev.to", reddit: "Reddit", bluesky: "Bluesky",
+  hackernews: "Hacker News", lobsters: "Lobsters", stackexchange: "Stack Exchange", devto: "Dev.to", reddit: "Reddit", producthunt: "Product Hunt", bluesky: "Bluesky",
 };
 
 function dateBucket(iso: string): "Today" | "This week" | "Earlier" {
